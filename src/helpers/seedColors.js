@@ -40,7 +40,7 @@ export default [
       { name: 'BelizeHole', color: '#2980b9' },
       { name: 'Wisteria', color: '#8e44ad' },
       { name: 'MidnightBlue', color: '#2c3e50' },
-      { name: 'SunFlower', color: '#f1c40f' },
+      { name: 'Sunflower', color: '#f1c40f' },
       { name: 'Carrot', color: '#e67e22' },
       { name: 'Alizarin', color: '#e74c3c' },
       { name: 'Clouds', color: '#ecf0f1' },

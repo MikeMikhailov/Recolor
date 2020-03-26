@@ -1,12 +1,33 @@
 .header {
   display: flex;
   align-items: center;
-background-color: #ffffff;
+  justify-content: space-between;
+  background-color: #ffffff;
+  height: 5vh;
+  &__nav {
+    display: flex;
+    align-items: center;
+  }
   &__title {
-    margin: 0 10% 0 0;
-    font-size: 2rem;
+    margin: 0 5% 0 0;
+    font-size: 1.5rem;
   }
   &__slider {
-    width: 30%;
+    width: 80vw;
+  }
+  &__selector {
+    min-width: 250px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header__slider {
+    width: 30vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .header__slider {
+    width: 50vw;
   }
 }

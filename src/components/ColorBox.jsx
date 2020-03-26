@@ -5,6 +5,10 @@ import '../scss/ColorBox.scss';
 
 function ColorBox({ background: backgroundColor, name }) {
   const [copied, setCopied] = useState(false);
+  const copyToClipboard = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 750);
+  };
   return (
     <div className="color-box" style={{ backgroundColor }}>
       <div style={{ backgroundColor }} className={`color-box__overlay ${copied ? 'show' : ''}`} />
@@ -12,13 +16,7 @@ function ColorBox({ background: backgroundColor, name }) {
         <h1 className="color-box__overlay-heading">PASTE ME!</h1>
         <h3 className="color-box__overlay-subheading">{backgroundColor}</h3>
       </div>
-      <CopyToClipboard
-        text={backgroundColor}
-        onCopy={() => {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 1000);
-        }}
-      >
+      <CopyToClipboard text={backgroundColor} onCopy={copyToClipboard}>
         <div className="color-box__copy-container">
           <button className="color-box__copy-btn" type="button">
             COPY

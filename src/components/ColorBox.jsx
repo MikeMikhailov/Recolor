@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import '../scss/ColorBox.scss'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import '../scss/ColorBox.scss';
 
 function ColorBox({ background: backgroundColor, name }) {
+  const [copied, setCopied] = useState(false);
   const formattedName = name.split('').reduce((accum, current, i) => {
     let nextAccum = accum;
-    if(i === 0) {
+    if (i === 0) {
       nextAccum += current.toUpperCase();
-    } else if(current.toUpperCase() === current && i !== 0) {
+    } else if (current.toUpperCase() === current && i !== 0) {
       nextAccum += ' ';
       nextAccum += current;
     } else {
       nextAccum += current;
     }
     return nextAccum;
-  },);
+  });
   return (
     <div className="color-box" style={{ backgroundColor }}>
-      <div className="color-box__copy-container">
-        <button className="color-box__copy-btn" type="button">
-          Copy
-        </button>
+      <div style={{ backgroundColor }} className={`color-box__overlay ${copied ? 'show' : ''}`} />
+      <div className={`color-box__overlay-message ${copied ? 'show' : ''}`}>
+        <h1 className="color-box__overlay-heading">PASTE ME!</h1>
+        <h3 className="color-box__overlay-subheading">{backgroundColor}</h3>
       </div>
+      <CopyToClipboard
+        text={backgroundColor}
+        onCopy={() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1000);
+        }}
+      >
+        <div className="color-box__copy-container">
+          <button className="color-box__copy-btn" type="button">
+            COPY
+          </button>
+        </div>
+      </CopyToClipboard>
       <div className="color-box__content-container">
         <span className="color-box__name">{formattedName}</span>
         <button className="color-box__more-btn" type="button">

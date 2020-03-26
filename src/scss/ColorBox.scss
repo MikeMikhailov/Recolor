@@ -1,37 +1,98 @@
 .color-box {
+	position: relative;
+  &__overlay {
+    height: 0;
+		position: relative;
+    transition: transform 400ms ease-in-out;
+    width: 0;
+    &.show {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+      transform: scale(10);
+			z-index: 1;
+    }
+    &-message {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      opacity: 0;
+      z-index: -1;
+      transition-duration: 0ms;
+      transition-delay: 0ms;
+      transition-property: transform, opacity;
+      transform: scale(1.2);
+      &.show {
+        transition-delay: 350ms;
+        transition-duration: 200ms;
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+      }
+    }
+    &-heading {
+      width: 100%;
+      background-color: #ffffff6f;
+      text-align: center;
+      margin-bottom: 0;
+      font-size: 8rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 0px #000000;
+    }
+    &-subheading {
+
+      margin: 1em 0 0;
+      font-size: 4rem;
+      color: #ffffff;
+      text-shadow: 1px 1px 0px #000000;
+    }
+  }
   &__copy-container {
-    width: 100%;
-    height: 90%;
-    display: flex;
     align-items: center;
+		cursor: pointer;
+    display: flex;
+    height: 90%;
     justify-content: center;
-    cursor: pointer;
+    width: 100%;
     &:hover .color-box__copy-btn {
       opacity: 1;
+    }
+    &:active .color-box__copy-btn {
+      transform: scale(0.95);
     }
   }
   &__copy-btn {
     background-color: transparent;
+    border: 2px solid #ffffff6f;
+    border-radius: 5px;
     color: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 3px;
-    padding: 10px 20px;
     cursor: pointer;
-    transition-duration: 200ms;
+    font-weight: bold;
     opacity: 0;
+    padding: 10px 30px;
+    transition-duration: 200ms;
+    &:focus {
+      outline: none;
+    }
   }
   &__content-container {
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: space-between;
     align-items: flex-end;
     box-sizing: border-box;
+    display: flex;
+    height: 10%;
+    justify-content: space-between;
     padding: 0 0 0 5px;
+    width: 100%;
   }
   &__name {
-    text-transform: uppercase;
     color: #ffffff;
+    text-transform: uppercase;
   }
   &__more-btn {
     background-color: #ffffff6f;

@@ -3,6 +3,12 @@
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  &__header {
+    height: 5vh;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+  }
   &__colors-wrap {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

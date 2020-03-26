@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  align-items: center;
+background-color: #ffffff;
+  &__title {
+    margin: 0 10% 0 0;
+    font-size: 2rem;
+  }
+  &__slider {
+    width: 30%;
+  }
+}

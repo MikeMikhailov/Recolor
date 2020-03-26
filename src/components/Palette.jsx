@@ -1,17 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import { Layout } from 'antd';
+import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import '../scss/Palette.scss';
 
 function Palette({ colors }) {
-  const colorBoxes = colors[500].map((colorObj) => (
+  const [lightness, setLightness] = useState(500);
+  const colorBoxes = colors[lightness].map((colorObj) => (
     <ColorBox name={colorObj.name} background={colorObj.hex} key={colorObj.hex} />
   ));
   return (
     <div className="palette">
-      {/* Navbar goes here */}
-      <div className="palette__colors-wrap">{colorBoxes}</div>
-      {/* Footer goes here */}
+      <Layout>
+        {/* Navbar goes here */}
+        <Navbar setLightness={setLightness} />
+        <div className="palette__colors-wrap">{colorBoxes}</div>
+        {/* Footer goes here */}
+      </Layout>
     </div>
   );
 }

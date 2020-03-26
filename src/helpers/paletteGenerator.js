@@ -1,9 +1,9 @@
 import chroma from 'chroma-js';
 
+export const colorLightnessValues = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+
 export default function generatePalette(palette) {
   const { colors: paletteColors } = palette;
-
-  const colorLightnessValues = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
   const generatedColors = colorLightnessValues.reduce((generatedColorsObj, lightness) => {
     const colorsOfLightness = [];
     paletteColors.forEach((colorObj) => {

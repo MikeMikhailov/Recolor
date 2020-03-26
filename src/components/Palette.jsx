@@ -4,8 +4,8 @@ import ColorBox from './ColorBox';
 import '../scss/Palette.scss';
 
 function Palette({ colors }) {
-  const colorBoxes = colors.map((colorObj) => (
-    <ColorBox name={colorObj.name} background={colorObj.color} key={colorObj.color} />
+  const colorBoxes = colors[500].map((colorObj) => (
+    <ColorBox name={colorObj.name} background={colorObj.hex} key={colorObj.hex} />
   ));
   return (
     <div className="palette">
@@ -20,12 +20,16 @@ Palette.propTypes = {
   paletteName: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   emoji: PropTypes.string.isRequired,
-  colors: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      color: PropTypes.string,
-    }),
-  ),
+  colors: PropTypes.objectOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        hex: PropTypes.string,
+        rgb: PropTypes.string,
+        rgba: PropTypes.string,
+      }),
+    ),
+  ).isRequired,
 };
 
 export default Palette;

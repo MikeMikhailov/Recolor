@@ -5,18 +5,6 @@ import '../scss/ColorBox.scss';
 
 function ColorBox({ background: backgroundColor, name }) {
   const [copied, setCopied] = useState(false);
-  const formattedName = name.split('').reduce((accum, current, i) => {
-    let nextAccum = accum;
-    if (i === 0) {
-      nextAccum += current.toUpperCase();
-    } else if (current.toUpperCase() === current && i !== 0) {
-      nextAccum += ' ';
-      nextAccum += current;
-    } else {
-      nextAccum += current;
-    }
-    return nextAccum;
-  });
   return (
     <div className="color-box" style={{ backgroundColor }}>
       <div style={{ backgroundColor }} className={`color-box__overlay ${copied ? 'show' : ''}`} />
@@ -38,7 +26,7 @@ function ColorBox({ background: backgroundColor, name }) {
         </div>
       </CopyToClipboard>
       <div className="color-box__content-container">
-        <span className="color-box__name">{formattedName}</span>
+        <span className="color-box__name">{name}</span>
         <button className="color-box__more-btn" type="button">
           MORE
         </button>

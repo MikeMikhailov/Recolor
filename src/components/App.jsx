@@ -1,11 +1,22 @@
 import React from 'react';
-import seedColors from '../helpers/seedColors';
-import generatePalette from '../helpers/paletteGenerator';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 import Palette from './Palette';
 
 function App() {
-  const { paletteName, id, emoji, colors } = generatePalette(seedColors[1], 'hex');
-  return <Palette paletteName={paletteName} id={id} emoji={emoji} colors={colors} />;
+  return (
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <h1>Palette list goes here</h1>
+          <Link to="/palette/flat-ui-colors-aussie">Link</Link>
+        </Route>
+        <Route path="/palette/:id" exact>
+          <Palette />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

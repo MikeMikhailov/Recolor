@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Slider, Select } from 'antd';
+import { Layout, Slider, Select, notification } from 'antd';
 import { colorLightnessValues } from '../helpers/paletteGenerator';
 import '../scss/Navbar.scss';
 
 const { Option } = Select;
 const { Header } = Layout;
 const marks = colorLightnessValues.reduce((accum, next) => ({ ...accum, [next]: `${next}` }), {});
+
+const openNotification = (placement) => {
+  notification.info({
+    message: 'Color Coding Changed',
+    duration: 1,
+    placement,
+  });
+};
 
 function Navbar({ setLightness, setColorCoding }) {
   return (
@@ -26,7 +34,14 @@ function Navbar({ setLightness, setColorCoding }) {
         />
       </div>
       <div className="header__nav header__nav_right">
-        <Select className="header__selector" defaultValue="hex" onChange={setColorCoding}>
+        <Select
+          className="header__selector"
+          defaultValue="hex"
+          onChange={(value) => {
+            setColorCoding(value);
+            openNotification('bottomLeft');
+          }}
+        >
           <Option value="hex">HEX — #ffffff</Option>
           <Option value="rgb">RGB — rgb(255,255,255)</Option>
           <Option value="rgba">RGBA — rgba(255,255,255,1)</Option>

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Layout, Slider, Select, notification } from 'antd';
 import { colorLightnessValues } from '../helpers/paletteGenerator';
 import '../scss/Navbar.scss';
@@ -20,7 +21,9 @@ function Navbar({ setLightness, setColorCoding }) {
   return (
     <Header className="header">
       <div className="header__nav header__nav_left">
-        <h2 className="header__title">Recolor</h2>
+        <Link to="/" className="header__logo-link">
+          <h2 className="header__logo">Recolor</h2>
+        </Link>
         <Slider
           className="header__slider"
           min={colorLightnessValues[0]}

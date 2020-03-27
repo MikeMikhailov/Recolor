@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import { Layout } from 'antd';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
@@ -13,12 +13,14 @@ function Palette() {
   const [lightness, setLightness] = useState(500);
   const [colorCoding, setColorCoding] = useState('hex');
   const { id } = useParams();
-  const { paletteName, emoji, colors } = generatePalette(seedColors.find((palette) => palette.id === id));
-
+  const { paletteName, emoji, colors } = generatePalette(
+    seedColors.find((palette) => palette.id === id),
+  );
 
   const colorBoxes = colors[lightness].map((colorObj) => (
     <ColorBox name={colorObj.name} background={colorObj[colorCoding]} key={colorObj.hex} />
   ));
+
   return (
     <div className="palette">
       <Navbar setLightness={setLightness} setColorCoding={setColorCoding} />

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import PaletteList from './PaletteList';
 
 import Palette from './Palette';
 
@@ -8,8 +9,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact>
-          <h1>Palette list goes here</h1>
-          <Link to="/palette/flat-ui-colors-aussie">Link</Link>
+          <PaletteList />
         </Route>
         <Route path="/palette/:id" exact>
           <Palette />

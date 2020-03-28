@@ -1,18 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import PaletteList from './PaletteList';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Loading from './Loading';
 
-import Palette from './Palette';
+const PaletteList = React.lazy(() => import('./PaletteList'));
+const Palette = React.lazy(() => import('./Palette'));
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/" exact>
-          <PaletteList />
+          <Suspense fallback={<Loading />}>
+            <PaletteList />
+          </Suspense>
         </Route>
         <Route path="/palette/:id" exact>
-          <Palette />
+          <Suspense fallback={<Loading />}>
+            <Palette />
+          </Suspense>
         </Route>
       </Switch>
     </Router>

@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'index_bundle.js',
-    publicPath: "/"
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -26,8 +26,8 @@ module.exports = {
       {
         test: /\.s?[ac]ss$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader, options: { hmr: true } },
-          { loader: 'css-loader', options: { url: false, sourceMap: true } },
+          { loader: MiniCssExtractPlugin.loader, options: { hmr: true, esModule: true } },
+          { loader: 'css-loader', options: { sourceMap: true, esModule: true } },
           { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
@@ -52,8 +52,7 @@ module.exports = {
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    compress: true,
     port: 9000,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
 };

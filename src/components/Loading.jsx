@@ -1,13 +1,21 @@
-import React from 'react'
+import React from 'react';
 import { Spin } from 'antd';
-import '../scss/Loading.scss'
+import styled from 'styled-components';
+
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 function Loading() {
   return (
-    <div className="loading__container">
+    <Container>
       <Spin size="large" />
-    </div>
-  )
+    </Container>
+  );
 }
 
-export default Loading
+export default Loading;

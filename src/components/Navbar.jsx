@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { Layout, Slider, Select, notification } from 'antd';
 import { colorLightnessValues } from '../helpers/paletteGenerator';
-import '../scss/Navbar.scss';
 
 const { Option } = Select;
-const { Header } = Layout;
 const marks = colorLightnessValues.reduce((accum, next) => ({ ...accum, [next]: `${next}` }), {});
 
 const openNotification = (placement) => {
@@ -17,15 +16,51 @@ const openNotification = (placement) => {
   });
 };
 
+const Header = styled(Layout.Header)`
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  height: 5vh;
+  justify-content: space-between;
+`;
+
+const Navigation = styled.nav`
+  align-items: center;
+  display: flex;
+`;
+
+const LogoLink = styled(Link)`
+  margin-right: 5%;
+`;
+
+const Logo = styled.h2`
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+`;
+
+const LightnessSlider = styled(Slider)`
+  width: 80vw;
+  @media (min-width: 1200px) {
+    width: 30vw;
+  }
+  @media (min-width: 768px) {
+    width: 50vw;
+  }
+`;
+
+const ColorCodingSelector = styled(Select)`
+  min-width: 250px;
+`;
+
 function Navbar({ setLightness, setColorCoding }) {
   return (
-    <Header className="header">
-      <div className="header__nav header__nav_left">
-        <Link to="/" className="header__logo-link">
-          <h2 className="header__logo">Recolor</h2>
-        </Link>
-        <Slider
-          className="header__slider"
+    <Header>
+      <Navigation>
+        <LogoLink to="/">
+          <Logo>Recolor</Logo>
+        </LogoLink>
+        <LightnessSlider
           min={colorLightnessValues[0]}
           max={colorLightnessValues[colorLightnessValues.length - 1]}
           marks={marks}
@@ -35,9 +70,9 @@ function Navbar({ setLightness, setColorCoding }) {
           onChange={setLightness}
           dropdownMatchSelectWidth={false}
         />
-      </div>
-      <div className="header__nav header__nav_right">
-        <Select
+      </Navigation>
+      <Navigation>
+        <ColorCodingSelector
           className="header__selector"
           defaultValue="hex"
           onChange={(value) => {
@@ -48,8 +83,8 @@ function Navbar({ setLightness, setColorCoding }) {
           <Option value="hex">HEX — #ffffff</Option>
           <Option value="rgb">RGB — rgb(255,255,255)</Option>
           <Option value="rgba">RGBA — rgba(255,255,255,1)</Option>
-        </Select>
-      </div>
+        </ColorCodingSelector>
+      </Navigation>
     </Header>
   );
 }

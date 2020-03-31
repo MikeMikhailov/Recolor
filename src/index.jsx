@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import 'normalize.css';
-import 'antd/dist/antd.css';
 import App from './components/App';
+import 'antd/dist/antd.css';
 
 render(<App />, document.querySelector('#root'));
 

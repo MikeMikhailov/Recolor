@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styled from 'styled-components';
-import PaletteModal from './PaletteModal';
+import PaletteModal from './Modal';
 
 const Container = styled.div`
   position: relative;
@@ -43,7 +43,6 @@ const CopyButton = styled.button`
 
 const ContentContainer = styled.div`
   align-items: flex-end;
-  box-sizing: border-box;
   display: flex;
   height: 10%;
   justify-content: space-between;
@@ -53,12 +52,14 @@ const ContentContainer = styled.div`
     color: #ffffff;
     font-size: 1rem;
     text-transform: uppercase;
+    line-height: 1.5rem;
   }
 `;
 
 const MoreButton = styled.button`
   background-color: #ffffff6f;
   border: none;
+  height: 1.5rem;
   color: #ffffff;
   cursor: pointer;
   font-size: 1rem;

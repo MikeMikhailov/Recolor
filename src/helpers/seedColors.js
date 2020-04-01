@@ -1,6 +1,6 @@
 export default [
   {
-    paletteName: 'Material UI Colors',
+    name: 'Material UI Colors',
     id: 'material-ui-colors',
     emoji: '🎨',
     colors: [
@@ -26,7 +26,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors v1',
+    name: 'Flat UI Colors v1',
     id: 'flat-ui-colors-v1',
     emoji: '🤙',
     colors: [
@@ -53,7 +53,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Dutch',
+    name: 'Flat UI Colors Dutch',
     id: 'flat-ui-colors-dutch',
     emoji: '🇳🇱',
     colors: [
@@ -80,7 +80,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors American',
+    name: 'Flat UI Colors American',
     id: 'flat-ui-colors-american',
     emoji: '🇺🇸',
     colors: [
@@ -107,7 +107,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Aussie',
+    name: 'Flat UI Colors Aussie',
     id: 'flat-ui-colors-aussie',
     emoji: '🇦🇺',
     colors: [
@@ -134,7 +134,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors British',
+    name: 'Flat UI Colors British',
     id: 'flat-ui-colors-british',
     emoji: '🇬🇧',
     colors: [
@@ -161,7 +161,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Spanish',
+    name: 'Flat UI Colors Spanish',
     id: 'flat-ui-colors-spanish',
     emoji: '🇪🇸',
     colors: [
@@ -188,7 +188,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors Indian',
+    name: 'Flat UI Colors Indian',
     id: 'flat-ui-colors-indian',
     emoji: '🇮🇳',
     colors: [
@@ -215,7 +215,7 @@ export default [
     ],
   },
   {
-    paletteName: 'Flat UI Colors French',
+    name: 'Flat UI Colors French',
     id: 'flat-ui-colors-french',
     emoji: '🇫🇷',
     colors: [

@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Normalize } from 'styled-normalize';
 import Loading from './Loading';
 
-const PaletteList = React.lazy(() => import('./PaletteList'));
-const Palette = React.lazy(() => import('./Palette'));
+const PaletteList = React.lazy(() => import('./Hero/PaletteList'));
+const Palette = React.lazy(() => import('./Palette/Palette'));
 
 function App() {
   return (

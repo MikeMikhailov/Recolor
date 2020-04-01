@@ -64,7 +64,7 @@ const ModalMessage = styled.div`
   }
 `;
 
-function PaletteModal({ backgroundColor }) {
+function Modal({ backgroundColor }) {
   return (
     <>
       <ModalBackground backgroundColor={backgroundColor} />
@@ -76,8 +76,8 @@ function PaletteModal({ backgroundColor }) {
   );
 }
 
-PaletteModal.propTypes = {
+Modal.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
 };
 
-export default PaletteModal;
+export default Modal;

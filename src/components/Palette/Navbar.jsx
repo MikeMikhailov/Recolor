@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Layout, Slider, Select, notification } from 'antd';
-import { colorLightnessValues } from '../helpers/paletteGenerator';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+import { colorLightnessValues } from '../../helpers/paletteGenerator';
 
 const { Option } = Select;
 const marks = colorLightnessValues.reduce((accum, next) => ({ ...accum, [next]: `${next}` }), {});
@@ -31,12 +32,18 @@ const Navigation = styled.nav`
 
 const LogoLink = styled(Link)`
   margin-right: 5%;
+  color: black;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  &:hover {
+    color: initial;
+  }
 `;
 
-const Logo = styled.h2`
-  margin: 0;
-  font-size: 1.5rem;
-  line-height: 1.5rem;
+const BackIcon = styled(ArrowLeftOutlined)`
+  margin-right: 10px;
 `;
 
 const LightnessSlider = styled(Slider)`
@@ -58,7 +65,8 @@ function Navbar({ setLightness, setColorCoding }) {
     <Header>
       <Navigation>
         <LogoLink to="/">
-          <Logo>Recolor</Logo>
+          <BackIcon />
+          Recolor
         </LogoLink>
         <LightnessSlider
           min={colorLightnessValues[0]}

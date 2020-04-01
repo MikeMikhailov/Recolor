@@ -4,8 +4,8 @@ import { Layout } from 'antd';
 import styled from 'styled-components';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
-import generatePalette from '../helpers/paletteGenerator';
-import seedColors from '../helpers/seedColors';
+import generatePalette from '../../helpers/paletteGenerator';
+import seedColors from '../../helpers/seedColors';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -44,7 +44,7 @@ function Palette() {
   const [lightness, setLightness] = useState(500);
   const [colorCoding, setColorCoding] = useState('hex');
   const { id } = useParams();
-  const { paletteName, emoji, colors } = generatePalette(
+  const { name, emoji, colors } = generatePalette(
     seedColors.find((palette) => palette.id === id),
   );
 
@@ -58,8 +58,8 @@ function Palette() {
       <ColorBoxesWrap>
         <ColorBoxesGrid>{colorBoxes}</ColorBoxesGrid>
       </ColorBoxesWrap>
-      <Footer className="palette__footer">
-        <PaletteName>{`${paletteName} ${emoji}`}</PaletteName>
+      <Footer>
+        <PaletteName>{`${name} ${emoji}`}</PaletteName>
       </Footer>
     </Container>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Layout, Slider, Select, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
@@ -30,16 +30,14 @@ const Navigation = styled.nav`
   display: flex;
 `;
 
-const LogoLink = styled(Link)`
+const LogoLink = styled.div`
   margin-right: 5%;
   color: #363636;
   display: flex;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.5rem;
-  &:hover {
-    color: initial;
-  }
+  cursor: pointer;
 `;
 
 const BackIcon = styled(ArrowLeftOutlined)`
@@ -61,10 +59,11 @@ const ColorCodingSelector = styled(Select)`
 `;
 
 function Navbar({ setLightness, setColorCoding }) {
+  const history = useHistory();
   return (
     <Header>
       <Navigation>
-        <LogoLink to="/">
+        <LogoLink onClick={() => history.goBack()}>
           <BackIcon />
           Recolor
         </LogoLink>

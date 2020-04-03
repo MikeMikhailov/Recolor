@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import PaletteModal from './Modal';
+import chroma from 'chroma-js';
+import Modal from './Modal';
 
-const Container = styled.div`
+const Container = styled.div.attrs((props) => ({
+  style: {
+    backgroundColor: props.backgroundColor,
+  }
+}))`
   position: relative;
-  background-color: ${(props) => props.backgroundColor};
+  
 `;
 
 const CopyArea = styled.div`
@@ -49,7 +55,11 @@ const ContentContainer = styled.div`
   padding: 0 0 0 5px;
   width: 100%;
   & span {
-    color: #ffffff;
+    color: ${(props) =>
+      chroma.contrast(props.backgroundColor, '#ffffff') >
+      chroma.contrast(props.backgroundColor, '#000000')
+        ? '#ffffff'
+        : '#000000'};
     font-size: 1rem;
     text-transform: uppercase;
     line-height: 1.5rem;
@@ -75,32 +85,38 @@ const MoreButton = styled.button`
   }
 `;
 
-function ColorBox({ background: backgroundColor, name }) {
+function ColorBox({ backgroundColor, name, colorId, singleColor }) {
   const [copied, setCopied] = useState(false);
+  const { paletteId } = useParams();
   const copyToClipboard = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 750);
   };
-
   return (
     <Container backgroundColor={backgroundColor}>
-      {copied ? <PaletteModal backgroundColor={backgroundColor} /> : ''}
+      {copied ? <Modal backgroundColor={backgroundColor} /> : ''}
       <CopyToClipboard text={backgroundColor} onCopy={copyToClipboard}>
         <CopyArea>
           <CopyButton type="button">Copy</CopyButton>
         </CopyArea>
       </CopyToClipboard>
-      <ContentContainer>
+      <ContentContainer backgroundColor={backgroundColor}>
         <span>{name}</span>
-        <MoreButton type="button">More</MoreButton>
+        {!singleColor ? (
+          <Link to={`/palette/${paletteId}/${colorId}`}>
+            <MoreButton type="button">More</MoreButton>
+          </Link>
+        ) : null}
       </ContentContainer>
     </Container>
   );
 }
 
 ColorBox.propTypes = {
-  background: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  colorId: PropTypes.string.isRequired,
+  singleColor: PropTypes.bool.isRequired,
 };
 
 export default ColorBox;

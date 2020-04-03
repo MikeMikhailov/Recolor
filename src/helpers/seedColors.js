@@ -182,7 +182,7 @@ export default [
       { name: 'Spiced Butter Nut', color: '#ffda79' },
       { name: 'Eye Of Newt', color: '#b33939' },
       { name: 'Chilean Fire', color: '#cd6133' },
-      { name: 'Gre yPorcelain', color: '#84817a' },
+      { name: 'Grey Porcelain', color: '#84817a' },
       { name: 'Alameda Ochre', color: '#cc8e35' },
       { name: 'Desert', color: '#ccae62' },
     ],

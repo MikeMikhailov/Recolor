@@ -17,9 +17,14 @@ function App() {
               <PaletteList />
             </Suspense>
           </Route>
-          <Route path="/palette/:id" exact>
+          <Route path="/palette/:paletteId" exact>
             <Suspense fallback={<Loading />}>
               <Palette />
+            </Suspense>
+          </Route>
+          <Route path="/palette/:paletteId/:colorId" exact>
+            <Suspense fallback={<Loading />}>
+              <Palette singleColor />
             </Suspense>
           </Route>
         </Switch>

@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
 const showModalMessage = keyframes`
-    from {
-      transform: scale(1.2);
-      opacity: 0;
-    }
+  from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
 
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  `;
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
 
 const scaleModalBackground = keyframes`
 from {

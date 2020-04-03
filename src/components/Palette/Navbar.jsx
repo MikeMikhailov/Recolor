@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Layout, Slider, Select, notification } from 'antd';
+import { Slider, Select, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { colorLightnessValues } from '../../helpers/paletteGenerator';
 
@@ -17,11 +17,12 @@ const openNotification = (placement) => {
   });
 };
 
-const Header = styled(Layout.Header)`
+const Header = styled.div`
   align-items: center;
   background-color: #ffffff;
   display: flex;
   height: 5vh;
+  padding: 0 50px;
   justify-content: space-between;
 `;
 
@@ -58,25 +59,29 @@ const ColorCodingSelector = styled(Select)`
   min-width: 250px;
 `;
 
-function Navbar({ setLightness, setColorCoding }) {
+function Navbar({ lightness, setLightness, setColorCoding, singleColor }) {
   const history = useHistory();
+  const { paletteId, colorId } = useParams();
+  const backPath = colorId !== undefined ? `/palette/${paletteId}` : '/';
   return (
     <Header>
       <Navigation>
-        <LogoLink onClick={() => history.goBack()}>
+        <LogoLink onClick={() => history.push(backPath)}>
           <BackIcon />
           Recolor
         </LogoLink>
-        <LightnessSlider
-          min={colorLightnessValues[0]}
-          max={colorLightnessValues[colorLightnessValues.length - 1]}
-          marks={marks}
-          step={null}
-          defaultValue={500}
-          tipFormatter={null}
-          onChange={setLightness}
-          dropdownMatchSelectWidth={false}
-        />
+        {!singleColor ? (
+          <LightnessSlider
+            min={colorLightnessValues[0]}
+            max={colorLightnessValues[colorLightnessValues.length - 1]}
+            marks={marks}
+            step={null}
+            defaultValue={lightness}
+            tipFormatter={null}
+            onChange={setLightness}
+            dropdownMatchSelectWidth={false}
+          />
+        ) : null}
       </Navigation>
       <Navigation>
         <ColorCodingSelector
@@ -96,8 +101,10 @@ function Navbar({ setLightness, setColorCoding }) {
 }
 
 Navbar.propTypes = {
+  lightness: PropTypes.number.isRequired,
   setLightness: PropTypes.func.isRequired,
   setColorCoding: PropTypes.func.isRequired,
+  singleColor: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

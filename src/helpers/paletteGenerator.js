@@ -19,6 +19,9 @@ export default function generatePalette(palette) {
           .replace('rgb', 'rgba')
           .replace(')', `,${generatedColor.alpha()})`),
         name: `${colorObj.name} ${lightness}`,
+        id: colorObj.name
+        .replace(/\s+/g, '')
+        .toLowerCase()
       };
       colorsOfLightness.push(generatedColorObj);
     });

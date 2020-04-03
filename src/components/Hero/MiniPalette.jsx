@@ -60,7 +60,7 @@ function MiniPalette({ name, emoji, colors, id }) {
       <ColorsBorder>
         <ColorsContainer>
           {colors.map(({ color }) => {
-            return <Color backgroundColor={color} />;
+            return <Color backgroundColor={color} key={color} />;
           })}
         </ColorsContainer>
       </ColorsBorder>

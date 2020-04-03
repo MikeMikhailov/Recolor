@@ -80,7 +80,6 @@ function Navbar({ setLightness, setColorCoding }) {
       </Navigation>
       <Navigation>
         <ColorCodingSelector
-          className="header__selector"
           defaultValue="hex"
           onChange={(value) => {
             setColorCoding(value);

@@ -91,7 +91,7 @@ function ColorBox({ background: backgroundColor, name }) {
         </CopyArea>
       </CopyToClipboard>
       <ContentContainer>
-        <span className="color-box__name">{name}</span>
+        <span>{name}</span>
         <MoreButton type="button">More</MoreButton>
       </ContentContainer>
     </Container>

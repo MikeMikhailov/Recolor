@@ -21,10 +21,20 @@ const ColorBoxesWrap = styled.div`
 
 const ColorBoxesGrid = styled.div`
   display: grid;
-  grid-auto-rows: minmax(22.5vh, max-content);
+  grid-auto-rows: minmax(11.25vh, 22.5vh);
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  @media (min-width: 500px) {
+    grid-auto-rows: minmax(22.5vh, ${(props) => `${90 / Math.ceil(props.colorsCount / 2)}vh`});
+  }
+  @media (min-width: 750px) {
+    grid-auto-rows: minmax(22.5vh, ${(props) => `${90 / Math.ceil(props.colorsCount / 3)}vh`});
+  }
+  @media (min-width: 1000px) {
+    grid-auto-rows: minmax(22.5vh, ${(props) => `${90 / Math.ceil(props.colorsCount / 4)}vh`});
+  }
   @media (min-width: 1200px) {
     grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(22.5vh, ${(props) => `${90 / Math.ceil(props.colorsCount / 5)}vh`});
   }
 `;
 
@@ -47,6 +57,8 @@ function Palette() {
   const { id } = useParams();
   const { name, emoji, colors } = generatePalette(seedColors.find((palette) => palette.id === id));
 
+  const colorsCount = colors[lightness].length;
+
   const colorBoxes = colors[lightness].map((colorObj) => (
     <ColorBox name={colorObj.name} background={colorObj[colorCoding]} key={colorObj.hex} />
   ));
@@ -55,7 +67,9 @@ function Palette() {
     <Container>
       <Navbar setLightness={setLightness} setColorCoding={setColorCoding} />
       <ColorBoxesWrap>
-        <ColorBoxesGrid>{colorBoxes}</ColorBoxesGrid>
+        <ColorBoxesGrid colorsCount={colorsCount}>
+          {colorBoxes}
+        </ColorBoxesGrid>
       </ColorBoxesWrap>
       <Footer>
         <PaletteName>{`${name} ${emoji}`}</PaletteName>

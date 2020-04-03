@@ -37,6 +37,7 @@ const Footer = styled(Layout.Footer)`
 `;
 
 const PaletteName = styled.h3`
+  color: #363636;
   margin: 0;
 `;
 
@@ -44,9 +45,7 @@ function Palette() {
   const [lightness, setLightness] = useState(500);
   const [colorCoding, setColorCoding] = useState('hex');
   const { id } = useParams();
-  const { name, emoji, colors } = generatePalette(
-    seedColors.find((palette) => palette.id === id),
-  );
+  const { name, emoji, colors } = generatePalette(seedColors.find((palette) => palette.id === id));
 
   const colorBoxes = colors[lightness].map((colorObj) => (
     <ColorBox name={colorObj.name} background={colorObj[colorCoding]} key={colorObj.hex} />

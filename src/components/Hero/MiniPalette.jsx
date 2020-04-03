@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Container = styled(Link)`
+const Container = styled.div`
   padding: 10px;
   padding-bottom: 0px;
   background-color: #ffffff;
@@ -12,21 +12,27 @@ const Container = styled(Link)`
   align-items: stretch;
   flex-direction: column;
   border-radius: 5px;
-  box-shadow: 0px 25px 57px -37px rgba(0,0,0,0.75);
-  color: black;
-  &:hover {
-    color: initial;
-  }
+  box-shadow: 0px 25px 57px -37px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+`;
+
+const ColorsBorder = styled.div`
+  height: 80%;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 const ColorsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 1fr;
-  height: 80%;
   width: 100%;
-  border-radius: 5px;
-  overflow: hidden;
+  height: 100%;
+  transition-duration: 200ms;
+  ${Container}:hover & {
+    transform: scale(1.1);
+  }
 `;
 
 const Color = styled.div`
@@ -42,18 +48,22 @@ const InfoContainer = styled.div`
 `;
 
 const Info = styled.p`
-  font-size: ${props => props.emoji ? '1.5rem' : '1rem'};
+  font-size: ${(props) => (props.emoji ? '1.5rem' : '1rem')};
+  color: #363636;
   margin: 0;
 `;
 
 function MiniPalette({ name, emoji, colors, id }) {
+  const history = useHistory();
   return (
-    <Container to={`/palette/${id}`}>
-      <ColorsContainer>
-        {colors.map(({ color }) => {
-          return <Color backgroundColor={color} />;
-        })}
-      </ColorsContainer>
+    <Container onClick={() => history.push(`/palette/${id}`)}>
+      <ColorsBorder>
+        <ColorsContainer>
+          {colors.map(({ color }) => {
+            return <Color backgroundColor={color} />;
+          })}
+        </ColorsContainer>
+      </ColorsBorder>
       <InfoContainer>
         <Info>{name}</Info>
         <Info emoji>{emoji}</Info>

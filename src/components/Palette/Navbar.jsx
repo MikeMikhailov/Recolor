@@ -32,7 +32,7 @@ const Navigation = styled.nav`
 
 const LogoLink = styled(Link)`
   margin-right: 5%;
-  color: black;
+  color: #363636;
   display: flex;
   font-size: 1.5rem;
   font-weight: bold;

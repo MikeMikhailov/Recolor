@@ -20,14 +20,14 @@ const Logo = styled(Link)`
 `;
 
 const CreatePaletteLink = styled(Link)`
-font-size: 1.25rem;
+  font-size: 1.25rem;
   color: white;
   font-weight: 500;
   color: #ffffff6f;
   &:hover {
     color: white;
   }
-`
+`;
 
 function Navbar() {
   return (
@@ -35,7 +35,7 @@ function Navbar() {
       <Logo to="/">Recolor</Logo>
       <CreatePaletteLink to="/">Create new palette</CreatePaletteLink>
     </Container>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

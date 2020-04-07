@@ -19,7 +19,7 @@ const Logo = styled(Link)`
   }
 `;
 
-const CreatePaletteLink = styled(Link)`
+const NewPaletteLink = styled(Link)`
   font-size: 1.25rem;
   color: white;
   font-weight: 500;
@@ -33,7 +33,7 @@ function Navbar() {
   return (
     <Container>
       <Logo to="/">Recolor</Logo>
-      <CreatePaletteLink to="/">Create new palette</CreatePaletteLink>
+      <NewPaletteLink to="/palette/new">Create new palette</NewPaletteLink>
     </Container>
   );
 }

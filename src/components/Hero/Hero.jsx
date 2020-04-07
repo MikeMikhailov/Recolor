@@ -23,7 +23,7 @@ const PalettesContainer = styled.div`
   width: 60%;
 `;
 
-function PaletteList() {
+function Hero() {
   return (
     <Container>
       <Navbar />
@@ -36,4 +36,4 @@ function PaletteList() {
   );
 }
 
-export default PaletteList;
+export default Hero;

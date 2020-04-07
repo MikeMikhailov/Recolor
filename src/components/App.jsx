@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Normalize } from 'styled-normalize';
 import Loading from './Loading';
 
-const PaletteList = React.lazy(() => import('./Hero/PaletteList'));
+const Hero = React.lazy(() => import('./Hero/Hero'));
 const Palette = React.lazy(() => import('./Palette/Palette'));
+const NewPaletteForm = React.lazy(() => import('./NewPaletteForm/NewPaletteForm'));
 
 function App() {
   return (
@@ -12,9 +13,14 @@ function App() {
       <Normalize />
       <Router>
         <Switch>
+          <Route path="/palette/new" exact>
+            <Suspense fallback={<Loading />}>
+              <NewPaletteForm />
+            </Suspense>
+          </Route>
           <Route path="/" exact>
             <Suspense fallback={<Loading />}>
-              <PaletteList />
+              <Hero />
             </Suspense>
           </Route>
           <Route path="/palette/:paletteId" exact>

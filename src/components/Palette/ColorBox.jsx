@@ -9,10 +9,9 @@ import Modal from './Modal';
 const Container = styled.div.attrs((props) => ({
   style: {
     backgroundColor: props.backgroundColor,
-  }
+  },
 }))`
   position: relative;
-  
 `;
 
 const CopyArea = styled.div`

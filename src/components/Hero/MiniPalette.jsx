@@ -35,10 +35,6 @@ const ColorsContainer = styled.div`
   }
 `;
 
-const Color = styled.div`
-  background-color: ${(props) => props.backgroundColor};
-`;
-
 const InfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -60,7 +56,7 @@ function MiniPalette({ name, emoji, colors, id }) {
       <ColorsBorder>
         <ColorsContainer>
           {colors.map(({ color }) => {
-            return <Color backgroundColor={color} key={color} />;
+            return <div style={{backgroundColor: color}} key={color} />;
           })}
         </ColorsContainer>
       </ColorsBorder>

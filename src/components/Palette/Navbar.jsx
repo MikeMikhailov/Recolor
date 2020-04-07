@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Slider, Select, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import { Header, Navigation } from '../General/Navbar';
 import { colorLightnessValues } from '../../helpers/paletteGenerator';
 
 const { Option } = Select;
@@ -17,22 +18,7 @@ const openNotification = (placement) => {
   });
 };
 
-const Header = styled.div`
-  align-items: center;
-  background-color: #ffffff;
-  display: flex;
-  height: 5vh;
-  padding: 0 50px;
-  justify-content: space-between;
-`;
-
-const Navigation = styled.nav`
-  align-items: center;
-  display: flex;
-`;
-
 const LogoLink = styled.div`
-  margin-right: 5%;
   color: #363636;
   display: flex;
   font-size: 1.5rem;

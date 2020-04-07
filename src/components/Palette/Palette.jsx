@@ -50,6 +50,7 @@ const Footer = styled.div`
 const PaletteName = styled.h3`
   color: #363636;
   margin: 0;
+  font-size: 1.5rem;
 `;
 
 const GoBackBox = styled.div`

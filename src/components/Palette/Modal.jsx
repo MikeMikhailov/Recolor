@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
+import { halfTransparent } from '../../styles/globalColors';
 
 const showModalMessage = keyframes`
   from {
@@ -48,7 +49,7 @@ const ModalMessage = styled.div`
   z-index: 2;
   animation: ${showModalMessage} 200ms ease-in-out 100ms 1 normal forwards;
   & h1 {
-    background-color: #ffffff6f;
+    background-color: ${halfTransparent};
     color: #ffffff;
     font-size: 8rem;
     margin-bottom: 0;

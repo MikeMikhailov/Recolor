@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import chroma from 'chroma-js';
 import Modal from './Modal';
+import { halfTransparent, quaterTransparent, primaryTextColor } from '../../styles/globalColors';
 
 const Container = styled.div.attrs((props) => ({
   style: {
@@ -25,7 +26,7 @@ const CopyArea = styled.div`
 
 const CopyButton = styled.button`
   background-color: transparent;
-  border: 2px solid #ffffff6f;
+  border: 2px solid ${halfTransparent};
   border-radius: 5px;
   color: #ffffff;
   cursor: pointer;
@@ -56,9 +57,9 @@ const ContentContainer = styled.div`
   & span {
     color: ${(props) =>
       chroma.contrast(props.backgroundColor, '#ffffff') >
-      chroma.contrast(props.backgroundColor, '#000000')
+      chroma.contrast(props.backgroundColor, primaryTextColor)
         ? '#ffffff'
-        : '#000000'};
+        : primaryTextColor};
     font-size: 1rem;
     text-transform: uppercase;
     line-height: 1.5rem;
@@ -66,7 +67,7 @@ const ContentContainer = styled.div`
 `;
 
 const MoreButton = styled.button`
-  background-color: #ffffff6f;
+  background-color: ${halfTransparent};
   border: none;
   height: 1.5rem;
   color: #ffffff;
@@ -74,7 +75,7 @@ const MoreButton = styled.button`
   font-size: 1rem;
   transition-duration: 150ms;
   &:hover {
-    background-color: #ffffffbd;
+    background-color: ${quaterTransparent};
   }
   &:focus {
     outline: none;

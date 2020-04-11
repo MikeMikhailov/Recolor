@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { primaryTextColor } from '../../styles/globalColors';
 
 const Container = styled.div`
   padding: 10px;
@@ -45,7 +46,7 @@ const InfoContainer = styled.div`
 
 const Info = styled.p`
   font-size: ${(props) => (props.emoji ? '1.5rem' : '1rem')};
-  color: #363636;
+  color: ${primaryTextColor};
   margin: 0;
 `;
 

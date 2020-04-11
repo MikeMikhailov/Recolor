@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { halfTransparent } from '../../styles/globalColors';
 
 const Container = styled.div`
   width: 60%;
@@ -23,9 +24,9 @@ const CreatePaletteLink = styled(Link)`
   font-size: 1.25rem;
   color: white;
   font-weight: 500;
-  color: #ffffff6f;
+  color: ${halfTransparent};
   &:hover {
-    color: white;
+    color: #ffffff;
   }
 `;
 

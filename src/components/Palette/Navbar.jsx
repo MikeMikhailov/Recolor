@@ -6,6 +6,7 @@ import { Slider, Select, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
 import { colorLightnessValues } from '../../helpers/paletteGenerator';
+import { primaryTextColor } from '../../styles/globalColors';
 
 const { Option } = Select;
 const marks = colorLightnessValues.reduce((accum, next) => ({ ...accum, [next]: `${next}` }), {});
@@ -19,7 +20,7 @@ const openNotification = (placement) => {
 };
 
 const LogoLink = styled.div`
-  color: #363636;
+  color: ${primaryTextColor};
   display: flex;
   font-size: 1.5rem;
   font-weight: bold;

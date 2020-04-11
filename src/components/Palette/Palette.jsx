@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import generatePalette from '../../helpers/paletteGenerator';
 import seedColors from '../../helpers/seedColors';
+import { primaryTextColor, halfTransparent } from '../../styles/globalColors';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -48,7 +49,7 @@ const Footer = styled.div`
 `;
 
 const PaletteName = styled.h3`
-  color: #363636;
+  color: ${primaryTextColor};
   margin: 0;
   font-size: 1.5rem;
 `;
@@ -62,7 +63,7 @@ const GoBackBox = styled.div`
 
 const GoBackButton = styled.button`
   background-color: transparent;
-  border: 2px solid #ffffff6f;
+  border: 2px solid ${halfTransparent};
   border-radius: 5px;
   color: #ffffff;
   cursor: pointer;

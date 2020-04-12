@@ -109,7 +109,7 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
           </Button>
           <Button onClick={setRandomColor}>Random Color</Button>
         </ActionsContainer>
-        <ColorPicker color={color} onChange={(e) => setColor(e.hex)} />
+        <ColorPicker color={color} onChange={(e) => setColor(e.hex.toUpperCase())} />
         <ColorForm
           layout="vertical"
           onValuesChange={(changedValues) => setColorName(changedValues.colorName)}
@@ -127,18 +127,26 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
               },
               () => ({
                 validator(rule, value) {
-                  if (paletteColors.filter((colorObj) => colorObj.name === value).length === 0) {
+                  if (paletteColors.filter((colorObj) => colorObj.name.toLowerCase() === value.toLowerCase()).length === 0) {
                     return Promise.resolve();
                   }
                   return Promise.reject(new Error('The color name you entered already exists!'));
                 },
               }),
+              () => ({
+                validator() {
+                  if (paletteColors.filter((colorObj) => colorObj.color.toLowerCase() === color.toLowerCase()).length === 0) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('The color you entered already exists!'));
+                },
+              })
             ]}
           >
-            <Input placeholder="Enter your color name:" value={colorName} />
+            <Input placeholder="Enter your color name:" value={colorName} disabled={paletteColors.length === 20} />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" block disabled={paletteColors.length === 20}>
               Submit
             </Button>
           </Form.Item>

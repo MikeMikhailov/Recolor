@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import Drawer from './Drawer';
 import Navbar from './Navbar';
+import ColorBox from './ColorBox';
 import palettes from '../../helpers/seedColors';
 import { secondaryTextColor } from '../../styles/globalColors';
 
@@ -18,48 +20,79 @@ const PaletteContainer = styled.div`
 `;
 
 const ColorBoxesGrid = styled.div`
-  ${(props) =>
-    props.paletteColorsLength > 0 ?
-    `
-    display: grid;
-    grid-auto-rows: 23.75vh;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    ` : `
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 95vh;
-    `}
+  display: grid;
+  grid-auto-rows: 23.75vh;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+`;
+
+const EmptyPaletteContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 95vh;
 `;
 
 const EmptyPaletteHeading = styled.h1`
-  font-size: 5rem;
+  font-size: 10rem;
   color: ${secondaryTextColor};
+  margin-top: 0px;
 `;
 
-const EmptyPaletteSubeading = styled.h1`
-  font-size: 3rem;
+const EmptyPaletteSubheading = styled.h1`
+  font-size: 2rem;
   color: ${secondaryTextColor};
+  margin-top: 0px;
+  margin-bottom: 0px;
 `;
+
+const SortableColorBox = SortableElement(({ name, backgroundColor, deleteColor }) => (
+  <ColorBox name={name} backgroundColor={backgroundColor} deleteColor={deleteColor} />
+));
+
+const SortableColorBoxesGrid = SortableContainer(({ items: paletteColors, deleteColor }) => {
+  return (
+    <ColorBoxesGrid>
+      {paletteColors.map((colorObj, index) => (
+        <SortableColorBox
+          index={index}
+          key={colorObj.color}
+          name={colorObj.name}
+          backgroundColor={colorObj.color}
+          deleteColor={deleteColor}
+        />
+      ))}
+    </ColorBoxesGrid>
+  );
+});
 
 function CreatePalette() {
   const [drawerUnfolded, setDrawerUnfolded] = useState(false);
   const [paletteColors, setPaletteColors] = useState(palettes[0].colors);
 
-  const paletteContent =
+  const reorderColors = ({ oldIndex, newIndex }) => {
+    const newPaletteColors = [...paletteColors];
+    newPaletteColors.splice(newIndex, 0, newPaletteColors.splice(oldIndex, 1)[0])
+    setPaletteColors(newPaletteColors);
+  };
+
+  const deleteColor = (color) => {
+    setPaletteColors(paletteColors.filter((colorObj) => colorObj.color !== color));
+  }
+
+  const PaletteContent =
     paletteColors.length > 0 ? (
-      paletteColors.map((colorObj) => (
-        <div style={{ backgroundColor: colorObj.color }} key={colorObj.color}>
-          {colorObj.name}
-        </div>
-      ))
+      <SortableColorBoxesGrid items={paletteColors} axis="xy" onSortEnd={reorderColors} deleteColor={deleteColor} />
     ) : (
-      <>
+      <EmptyPaletteContainer>
         <EmptyPaletteHeading>\(^Д^)/</EmptyPaletteHeading>
-        <EmptyPaletteSubeading>Wow! Such Empty</EmptyPaletteSubeading>
-      </>
+        <EmptyPaletteSubheading>Wow! Such Empty</EmptyPaletteSubheading>
+      </EmptyPaletteContainer>
     );
+
   return (
     <Container>
       <Drawer
@@ -72,7 +105,7 @@ function CreatePalette() {
           setDrawerUnfolded={() => setDrawerUnfolded(!drawerUnfolded)}
           drawerUnfolded={drawerUnfolded}
         />
-        <ColorBoxesGrid paletteColorsLength={paletteColors.length}>{paletteContent}</ColorBoxesGrid>
+        {PaletteContent}
       </PaletteContainer>
     </Container>
   );

@@ -70,7 +70,7 @@ const SortableColorBoxesGrid = SortableContainer(({ items: paletteColors, delete
 });
 
 function CreatePalette() {
-  const [drawerUnfolded, setDrawerUnfolded] = useState(false);
+  const [drawerUnfolded, setDrawerUnfolded] = useState(true);
   const [paletteColors, setPaletteColors] = useState(palettes[0].colors);
 
   const reorderColors = ({ oldIndex, newIndex }) => {

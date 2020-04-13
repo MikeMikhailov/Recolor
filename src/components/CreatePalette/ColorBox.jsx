@@ -14,7 +14,7 @@ const Container = styled.div.attrs((props) => ({
   justify-content: space-between;
   align-items: flex-end;
   padding: 10px;
-  & > *:first-child {
+  & > span {
     color: ${(props) =>
       chroma.contrast(props.backgroundColor, '#ffffff') >
       chroma.contrast(props.backgroundColor, primaryTextColor)

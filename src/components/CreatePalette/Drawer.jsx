@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { ChromePicker as ColorPicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import { Button, Input, Form } from 'antd';
 import { primaryTextColor } from '../../styles/globalColors';
 
@@ -35,7 +35,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   transition-duration: 200ms;
   & > *:not(:last-child) {
     margin-bottom: 20px;
@@ -59,6 +59,19 @@ const ColorForm = styled(Form)`
   width: 100%;
 `;
 
+const ColorPicker = styled(ChromePicker)`
+  width: 100% !important;
+  box-shadow: none !important;
+  border: 1px solid #e2e2e2;
+  transition: all 300ms;
+  &:hover {
+    border-color: #40a9ff;
+  }
+  &:focus-within {
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+  }
+`;
 function Drawer({ unfolded, setPaletteColors, paletteColors }) {
   // Two-way animation mechanism
   // 1) Component renders empty
@@ -68,10 +81,13 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
   // 5) Unfolded starts playing foldDrawer, onAnimationEnd sets isRendering to false
   // 6) Component renders empty
 
-  const [color, setColor] = useState('#ffffff');
-  const [colorName, setColorName] = useState('');
   const [isRendersing, setRendering] = useState(unfolded);
+
+  const [color, setColor] = useState('#ffffff');
+  const [name, setName] = useState('');
+
   const [form] = Form.useForm();
+  const [errors, setErrors] = useState({ color: null, name: null });
 
   useEffect(() => {
     if (unfolded) {
@@ -85,12 +101,10 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
     }
   };
 
-  const handleSubmit = () => {
-    setPaletteColors([...paletteColors, { name: colorName, color }]);
-    setColor('#ffffff');
-    setColorName('');
-    form.resetFields();
-  };
+  const handlePaletteReset = () => {
+    setPaletteColors([]);
+    setErrors({ color: null, name: null })
+  }
 
   const setRandomColor = () => {
     const randomColor = `#${Math.floor(Math.random() * 0xffffff)
@@ -99,51 +113,74 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
     setColor(randomColor);
   };
 
+  const dataValidationAndHandle = (field, value) => {
+    if (
+      paletteColors.filter((colorObj) => colorObj[field].toLowerCase() === value.toLowerCase())
+        .length !== 0
+    ) {
+      setErrors({ ...errors, [field]: `The ${field.toLowerCase()} should be unique!` });
+    } else {
+      setErrors({ ...errors, [field]: null });
+    }
+    if(field === 'color') {
+      setColor(value.toUpperCase())
+    } else {
+      setName(value);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (Object.values(errors).filter((val) => val !== null).length === 0) {
+      setPaletteColors([...paletteColors, { name, color }]);
+      setColor('#ffffff');
+      setName('');
+      form.resetFields();
+    }
+  };
+
+
   return (
     isRendersing && (
       <Container onAnimationEnd={onAnimationEnd} unfolded={unfolded}>
         <Heading>Design your palette</Heading>
         <ActionsContainer>
-          <Button danger onClick={() => setPaletteColors([])}>
+          <Button danger onClick={handlePaletteReset}>
             Clear Palette
           </Button>
           <Button onClick={setRandomColor}>Random Color</Button>
         </ActionsContainer>
-        <ColorPicker color={color} onChange={(e) => setColor(e.hex.toUpperCase())} />
+
         <ColorForm
           layout="vertical"
-          onValuesChange={(changedValues) => setColorName(changedValues.colorName)}
+          onValuesChange={(changedValues) => dataValidationAndHandle('name', changedValues.name)}
           onFinish={handleSubmit}
           form={form}
         >
+          <Form.Item validateStatus={errors.color && 'error'} help={errors.color}>
+            <ColorPicker
+              color={color}
+              onChange={(e) => dataValidationAndHandle('color', e.hex)}
+              disableAlpha
+            />
+          </Form.Item>
           <Form.Item
             label="Color Name"
-            name="colorName"
+            name="name"
+            validateStatus={errors.name && 'error'}
+            help={errors.name}
             rules={[
               {
                 required: true,
                 whitespace: true,
                 message: 'Please input your color name!',
               },
-              () => ({
-                validator(rule, value) {
-                  if (paletteColors.filter((colorObj) => colorObj.name.toLowerCase() === value.toLowerCase()).length === 0) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error('The color name you entered already exists!'));
-                },
-              }),
-              () => ({
-                validator() {
-                  if (paletteColors.filter((colorObj) => colorObj.color.toLowerCase() === color.toLowerCase()).length === 0) {
-                    return Promise.resolve();
-                  }
-                  return Promise.reject(new Error('The color you entered already exists!'));
-                },
-              })
             ]}
           >
-            <Input placeholder="Enter your color name:" value={colorName} disabled={paletteColors.length === 20} />
+            <Input
+              placeholder="Enter your color name:"
+              value={name}
+              disabled={paletteColors.length === 20}
+            />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block disabled={paletteColors.length === 20}>

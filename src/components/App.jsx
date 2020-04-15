@@ -1,15 +1,19 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Normalize } from 'styled-normalize';
+import { Provider } from 'react-redux';
+import configureStore from '../store/index.store';
 import Loading from './General/Loading';
 
-const Hero = React.lazy(() => import('./Hero/Hero'));
-const Palette = React.lazy(() => import('./Palette/Palette'));
-const CreatePalette = React.lazy(() => import('./CreatePalette/CreatePalette'));
+const store = configureStore();
+
+const Hero = React.lazy(() => import('../containers/Hero'));
+const Palette = React.lazy(() => import('../containers/Palette'));
+const CreatePalette = React.lazy(() => import('../containers/CreatePalette'));
 
 function App() {
   return (
-    <>
+    <Provider store={store}>
       <Normalize />
       <Router>
         <Switch>
@@ -35,7 +39,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-    </>
+    </Provider>
   );
 }
 

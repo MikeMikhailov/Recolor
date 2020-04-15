@@ -27,5 +27,6 @@ module.exports = {
   rules: {
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "react/prop-types": [2, { ignore: ['children'] }],
+    "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION__"] }]
   },
 };

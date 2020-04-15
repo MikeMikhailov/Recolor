@@ -1,23 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import Drawer from './Drawer';
-import Navbar from './Navbar';
 import ColorBox from './ColorBox';
-import palettes from '../../constants/seedColors';
 import { secondaryTextColor } from '../../constants/globalColors';
-
-const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: flex-start;
-`;
-
-const PaletteContainer = styled.div`
-  flex-grow: 1;
-  height: 100vh;
-`;
 
 const ColorBoxesGrid = styled.div`
   display: grid;
@@ -53,7 +39,7 @@ const SortableColorBox = SortableElement(({ name, backgroundColor, deleteColor }
   <ColorBox name={name} backgroundColor={backgroundColor} deleteColor={deleteColor} />
 ));
 
-const SortableColorBoxesGrid = SortableContainer(({ items: paletteColors, deleteColor }) => {
+const SortableColorBoxesGrid = SortableContainer(({ paletteColors, deleteColor }) => {
   return (
     <ColorBoxesGrid>
       {paletteColors.map((colorObj, index) => (
@@ -69,10 +55,7 @@ const SortableColorBoxesGrid = SortableContainer(({ items: paletteColors, delete
   );
 });
 
-function CreatePalette() {
-  const [drawerUnfolded, setDrawerUnfolded] = useState(true);
-  const [paletteColors, setPaletteColors] = useState(palettes[0].colors);
-
+function Palette({ paletteColors, setPaletteColors }) {
   const reorderColors = ({ oldIndex, newIndex }) => {
     const newPaletteColors = [...paletteColors];
     newPaletteColors.splice(newIndex, 0, newPaletteColors.splice(oldIndex, 1)[0]);
@@ -86,7 +69,7 @@ function CreatePalette() {
   const PaletteContent =
     paletteColors.length > 0 ? (
       <SortableColorBoxesGrid
-        items={paletteColors}
+        paletteColors={paletteColors}
         axis="xy"
         onSortEnd={reorderColors}
         deleteColor={deleteColor}
@@ -99,21 +82,24 @@ function CreatePalette() {
     );
 
   return (
-    <Container>
-      <Drawer
-        unfolded={drawerUnfolded}
-        setPaletteColors={setPaletteColors}
-        paletteColors={paletteColors}
-      />
-      <PaletteContainer>
-        <Navbar
-          setDrawerUnfolded={() => setDrawerUnfolded(!drawerUnfolded)}
-          drawerUnfolded={drawerUnfolded}
-        />
-        {PaletteContent}
-      </PaletteContainer>
-    </Container>
+    <>
+      {PaletteContent}
+    </>
   );
 }
 
-export default CreatePalette;
+Palette.propTypes = {
+  paletteColors: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      color: PropTypes.string.isRequired,
+    }),
+  ),
+  setPaletteColors: PropTypes.func.isRequired,
+};
+
+Palette.defaultProps = {
+  paletteColors: [],
+};
+
+export default Palette;

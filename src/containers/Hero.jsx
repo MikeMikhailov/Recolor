@@ -1,8 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Navbar from './Navbar';
-import MiniPalette from './MiniPalette';
-import palettes from '../../helpers/seedColors';
+import Navbar from '../components/Hero/Navbar';
+import MiniPalette from '../components/Hero/MiniPalette';
 
 const Container = styled.div`
   width: 100vw;
@@ -24,6 +24,7 @@ const PalettesContainer = styled.div`
 `;
 
 function Hero() {
+  const palettes = useSelector((state) => state.palettes);
   return (
     <Container>
       <Navbar />

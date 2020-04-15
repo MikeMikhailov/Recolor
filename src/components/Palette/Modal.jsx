@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { halfTransparent } from '../../styles/globalColors';
+import { halfTransparent } from '../../constants/globalColors';
 
 const showModalMessage = keyframes`
   from {

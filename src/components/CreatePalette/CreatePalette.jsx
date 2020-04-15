@@ -4,8 +4,8 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 import Drawer from './Drawer';
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
-import palettes from '../../helpers/seedColors';
-import { secondaryTextColor } from '../../styles/globalColors';
+import palettes from '../../constants/seedColors';
+import { secondaryTextColor } from '../../constants/globalColors';
 
 const Container = styled.div`
   width: 100vw;
@@ -75,17 +75,22 @@ function CreatePalette() {
 
   const reorderColors = ({ oldIndex, newIndex }) => {
     const newPaletteColors = [...paletteColors];
-    newPaletteColors.splice(newIndex, 0, newPaletteColors.splice(oldIndex, 1)[0])
+    newPaletteColors.splice(newIndex, 0, newPaletteColors.splice(oldIndex, 1)[0]);
     setPaletteColors(newPaletteColors);
   };
 
   const deleteColor = (color) => {
     setPaletteColors(paletteColors.filter((colorObj) => colorObj.color !== color));
-  }
+  };
 
   const PaletteContent =
     paletteColors.length > 0 ? (
-      <SortableColorBoxesGrid items={paletteColors} axis="xy" onSortEnd={reorderColors} deleteColor={deleteColor} />
+      <SortableColorBoxesGrid
+        items={paletteColors}
+        axis="xy"
+        onSortEnd={reorderColors}
+        deleteColor={deleteColor}
+      />
     ) : (
       <EmptyPaletteContainer>
         <EmptyPaletteHeading>\(^Д^)/</EmptyPaletteHeading>

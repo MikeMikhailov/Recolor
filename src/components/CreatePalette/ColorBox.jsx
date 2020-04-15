@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DeleteFilled } from '@ant-design/icons';
 import styled from 'styled-components';
 import chroma from 'chroma-js';
-import { primaryTextColor } from '../../styles/globalColors';
+import { primaryTextColor } from '../../constants/globalColors';
 
 const Container = styled.div.attrs((props) => ({
   style: {
@@ -46,7 +46,6 @@ const DeleteButton = styled.button`
 `;
 
 function ColorBox({ backgroundColor, name, deleteColor }) {
-
   return (
     <Container backgroundColor={backgroundColor}>
       <span>{name}</span>

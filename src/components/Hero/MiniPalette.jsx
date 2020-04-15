@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { primaryTextColor } from '../../styles/globalColors';
+import { primaryTextColor } from '../../constants/globalColors';
 
 const Container = styled.div`
   padding: 10px;
@@ -57,7 +57,7 @@ function MiniPalette({ name, emoji, colors, id }) {
       <ColorsBorder>
         <ColorsContainer>
           {colors.map(({ color }) => {
-            return <div style={{backgroundColor: color}} key={color} />;
+            return <div style={{ backgroundColor: color }} key={color} />;
           })}
         </ColorsContainer>
       </ColorsBorder>

@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import chroma from 'chroma-js';
 import Modal from './Modal';
-import { halfTransparent, quaterTransparent, primaryTextColor } from '../../styles/globalColors';
+import { halfTransparent, quaterTransparent, primaryTextColor } from '../../constants/globalColors';
 
 const Container = styled.div.attrs((props) => ({
   style: {

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Button } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
-import { primaryTextColor } from '../../styles/globalColors';
+import { primaryTextColor } from '../../constants/globalColors';
 
 const Heading = styled.h3`
   color: ${primaryTextColor};
@@ -15,7 +15,7 @@ const Heading = styled.h3`
 `;
 
 function Navbar({ setDrawerUnfolded, drawerUnfolded }) {
-  const history = useHistory()
+  const history = useHistory();
   return (
     <Header>
       <Navigation>

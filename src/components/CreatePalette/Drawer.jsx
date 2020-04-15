@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { ChromePicker } from 'react-color';
 import { Button, Input, Form } from 'antd';
-import { primaryTextColor } from '../../styles/globalColors';
+import { primaryTextColor } from '../../constants/globalColors';
 
 const unfoldDrawer = keyframes`
   from {
@@ -103,8 +103,8 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
 
   const handlePaletteReset = () => {
     setPaletteColors([]);
-    setErrors({ color: null, name: null })
-  }
+    setErrors({ color: null, name: null });
+  };
 
   const setRandomColor = () => {
     const randomColor = `#${Math.floor(Math.random() * 0xffffff)
@@ -122,8 +122,8 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
     } else {
       setErrors({ ...errors, [field]: null });
     }
-    if(field === 'color') {
-      setColor(value.toUpperCase())
+    if (field === 'color') {
+      setColor(value.toUpperCase());
     } else {
       setName(value);
     }
@@ -137,7 +137,6 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
       form.resetFields();
     }
   };
-
 
   return (
     isRendersing && (

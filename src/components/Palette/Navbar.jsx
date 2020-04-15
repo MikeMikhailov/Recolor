@@ -5,8 +5,8 @@ import styled from 'styled-components';
 import { Slider, Select, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
-import { colorLightnessValues } from '../../helpers/paletteGenerator';
-import { primaryTextColor } from '../../styles/globalColors';
+import { colorLightnessValues } from '../../services/paletteGenerator';
+import { primaryTextColor } from '../../constants/globalColors';
 
 const { Option } = Select;
 const marks = colorLightnessValues.reduce((accum, next) => ({ ...accum, [next]: `${next}` }), {});

@@ -28,7 +28,7 @@ const Container = styled.div`
     normal forwards;
   width: 20vw;
   box-shadow: 15px 0px 35px -5px rgba(0, 0, 0, 0.15);
-  z-index: 2;
+  z-index: 1;
   min-width: 300px;
   height: 100vh;
   display: flex;
@@ -114,10 +114,7 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
   };
 
   const dataValidationAndHandle = (field, value) => {
-    if (
-      paletteColors.filter((colorObj) => colorObj[field].toLowerCase() === value.toLowerCase())
-        .length !== 0
-    ) {
+    if (paletteColors.find((colorObj) => colorObj[field].toLowerCase() === value.toLowerCase())) {
       setErrors({ ...errors, [field]: `The ${field.toLowerCase()} should be unique!` });
     } else {
       setErrors({ ...errors, [field]: null });

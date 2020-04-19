@@ -14,7 +14,7 @@ const Heading = styled.h3`
   margin: 0px;
 `;
 
-function Navbar({ setDrawerUnfolded, drawerUnfolded }) {
+function Navbar({ setDrawerUnfolded, drawerUnfolded, startSavingProgress }) {
   const history = useHistory();
   return (
     <Header>
@@ -26,15 +26,16 @@ function Navbar({ setDrawerUnfolded, drawerUnfolded }) {
       </Navigation>
       <Navigation>
         <Button onClick={() => history.push('/')}>Go Back</Button>
-        <Button type="primary">Save Palette</Button>
+        <Button onClick={startSavingProgress} type="primary">Save Palette</Button>
       </Navigation>
     </Header>
   );
 }
 
 Navbar.propTypes = {
-  setDrawerUnfolded: PropTypes.func.isRequired,
   drawerUnfolded: PropTypes.bool.isRequired,
+  setDrawerUnfolded: PropTypes.func.isRequired,
+  startSavingProgress: PropTypes.func.isRequired,
 };
 
 export default Navbar;

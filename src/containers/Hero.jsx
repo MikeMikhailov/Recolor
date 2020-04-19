@@ -12,6 +12,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  padding-bottom: 50px;
 `;
 
 const PalettesContainer = styled.div`

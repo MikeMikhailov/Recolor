@@ -4,7 +4,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import chroma from 'chroma-js';
-import Modal from './Modal';
+import Modal from './Modal.jsx';
 import { halfTransparent, quaterTransparent, primaryTextColor } from '../../constants/globalColors';
 
 const Container = styled.div.attrs((props) => ({

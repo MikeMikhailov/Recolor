@@ -1,4 +1,6 @@
 const path = require('path');
+
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
@@ -6,6 +8,11 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
+    plugins: [PnpWebpackPlugin],
+  },
+  mode: 'development',
+  resolveLoader: {
+    plugins: [PnpWebpackPlugin.moduleLoader(module)],
   },
   devtool: 'source-map',
   entry: './src/index.jsx',
@@ -17,24 +24,27 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: require.resolve('babel-loader'),
         },
       },
       {
         test: /\.s?[ac]ss$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader, options: { hmr: true, esModule: true } },
-          { loader: 'css-loader', options: { sourceMap: true, esModule: true } },
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: { hmr: true, esModule: true },
+          },
+          { loader: require.resolve('css-loader'), options: { sourceMap: true, esModule: true } },
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|woff2?)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: require.resolve('file-loader'),
           },
         ],
       },

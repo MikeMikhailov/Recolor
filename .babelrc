@@ -1,7 +1,7 @@
 {
   "plugins": [
-    "@babel/plugin-transform-runtime",
-    "babel-plugin-styled-components",
+    "@babel/transform-runtime",
+    "macros",
     [
       "import",
       {
@@ -12,7 +12,7 @@
     ]
   ],
   "presets": [
-    "@babel/preset-react",
-    "@babel/preset-env"
+    "@babel/react",
+    "@babel/env"
   ]
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
-import ColorBox from './ColorBox';
+import ColorBox from './ColorBox.jsx';
 import { secondaryTextColor } from '../../constants/globalColors';
 
 const ColorBoxesGrid = styled.div`

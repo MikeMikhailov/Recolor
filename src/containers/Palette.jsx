@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Navbar from '../components/Palette/Navbar';
-import ColorBoxesGrid from '../components/Palette/ColorBoxesGrid';
-import Footer from '../components/Palette/Footer';
+import Navbar from '../components/Palette/Navbar.jsx';
+import ColorBoxesGrid from '../components/Palette/ColorBoxesGrid.jsx';
+import Footer from '../components/Palette/Footer.jsx';
 import generatePalette from '../services/paletteGenerator';
 
 const Container = styled.div`

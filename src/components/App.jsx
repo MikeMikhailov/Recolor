@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Normalize } from 'styled-normalize';
 import { Provider } from 'react-redux';
+import { Normalize } from 'styled-normalize';
 import configureStore from '../store/index.store';
-import Loading from './General/Loading';
+import Loading from './General/Loading.jsx';
 
 const store = configureStore();
 

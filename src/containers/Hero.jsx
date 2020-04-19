@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Navbar from '../components/Hero/Navbar';
-import MiniPalette from '../components/Hero/MiniPalette';
+import Navbar from '../components/Hero/Navbar.jsx';
+import MiniPalette from '../components/Hero/MiniPalette.jsx';
 
 const Container = styled.div`
   width: 100vw;

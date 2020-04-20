@@ -18,14 +18,15 @@ function App() {
   const state = store.getState();
   const handleHideSaveError = (storeUnsubscribe) => {
     notification.close('saveError');
-    store.dispatch(hideSaveError());
     storeUnsubscribe();
+    store.dispatch(hideSaveError());
   };
   // We are subscribing to store, so that if there is a localstorage save error
   // we are displaying a notification with a possibility to hide further ones
   const unsubscribe = store.subscribe(() => {
     const saveStatus = saveState(store.getState());
     if (!saveStatus && state.showErrors) {
+      notification.close('saveError');
       notification.error({
         message: "Couldn't save changes",
         duration: 3,

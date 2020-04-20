@@ -5,6 +5,7 @@ import { halfTransparent } from '../../constants/globalColors';
 
 const Container = styled.div`
   width: 60%;
+  min-width: 325px;
   height: 100px;
   display: flex;
   justify-content: space-between;

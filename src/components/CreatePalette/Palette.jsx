@@ -9,7 +9,7 @@ const ColorBoxesGrid = styled.div`
   display: grid;
   grid-auto-rows: 23.75vh;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  @media (min-width: 1200px) {
+  @media (min-width: 1500px) {
     grid-template-columns: repeat(5, 1fr);
   }
 `;

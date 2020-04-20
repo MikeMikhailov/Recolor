@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { ChromePicker } from 'react-color';
 import { Button, Input, Form } from 'antd';
-import { primaryTextColor } from '../../constants/globalColors';
+import { primaryTextColor, primaryColor } from '../../constants/globalColors';
 
 const unfoldDrawer = keyframes`
   from {
@@ -64,10 +64,10 @@ const ColorPicker = styled(ChromePicker)`
   transition-duration: 300ms;
   width: 100% !important;
   &:hover {
-    border-color: #40a9ff;
+    border-color: ${primaryColor};
   }
   &:focus-within {
-    border-color: #40a9ff;
+    border-color: ${primaryColor};
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
   }
 `;

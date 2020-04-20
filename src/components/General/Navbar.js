@@ -18,6 +18,11 @@ export const Navigation = styled.nav`
   align-items: center;
   display: flex;
   & > *:not(:last-child) {
-    margin-right: 50px;
+    margin-right: 20px;
+  }
+  @media (min-width: 700px) {
+    & > *:not(:last-child) {
+      margin-right: 50px;
+    }
   }
 `;

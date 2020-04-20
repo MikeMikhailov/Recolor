@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
+import useWindowWidth from '../../hooks/useWindowWidth.jsx';
 import { primaryTextColor } from '../../constants/globalColors';
 
 const Heading = styled.h3`
@@ -16,13 +17,14 @@ const Heading = styled.h3`
 
 function Navbar({ setDrawerUnfolded, drawerUnfolded, startSavingProgress, paletteColors }) {
   const history = useHistory();
+  const windowWidth = useWindowWidth();
   return (
     <Header>
       <Navigation>
         <Button onClick={setDrawerUnfolded}>
           {drawerUnfolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
         </Button>
-        <Heading>Create new palette!</Heading>
+        {windowWidth > 1000 ? <Heading>Create new palette!</Heading> : null}
       </Navigation>
       <Navigation>
         <Button onClick={() => history.push('/')}>Go Back</Button>

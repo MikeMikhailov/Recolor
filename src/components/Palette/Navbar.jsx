@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { Slider, Select, notification } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
+import useWindowWidth from '../../hooks/useWindowWidth.jsx';
 import { colorLightnessValues } from '../../services/paletteGenerator';
 import { primaryTextColor } from '../../constants/globalColors';
 
@@ -42,11 +43,7 @@ const LightnessSlider = styled(Slider)`
 function Navbar({ lightness, setLightness, setColorCoding, singleColor }) {
   const history = useHistory();
   const { paletteId, colorId } = useParams();
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
-    return () => window.removeEventListener('resize', () => setWindowWidth(window.innerWidth));
-  }, []);
+  const windowWidth = useWindowWidth();
   const lightnessController =
     windowWidth > 750 ? (
       <LightnessSlider
@@ -62,7 +59,9 @@ function Navbar({ lightness, setLightness, setColorCoding, singleColor }) {
     ) : (
       <Select defaultValue={500} onChange={setLightness}>
         {colorLightnessValues.map((value) => (
-          <Option value={value} key={value}>{value}</Option>
+          <Option value={value} key={value}>
+            {value}
+          </Option>
         ))}
       </Select>
     );

@@ -1,5 +1,6 @@
 .yarn/build-state.yml
 .yarn/install-state.gz
 cache
+dist
 node_modules
 unplugged

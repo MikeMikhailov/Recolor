@@ -1,2 +1,3 @@
 export const ADD_PALETTE = 'ADD_PALETTE';
 export const DELETE_PALETTE = 'DELETE_PALETTE';
+export const HIDE_SAVE_ERROR = 'HIDE_SAVE_ERROR';

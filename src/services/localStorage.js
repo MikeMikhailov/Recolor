@@ -14,7 +14,8 @@ export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('palettes', serializedState);
+    return true;
   } catch (error) {
-    console.log(error);
+    return false;
   }
 };

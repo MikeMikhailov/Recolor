@@ -2,59 +2,84 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { primaryTextColor } from '../../constants/globalColors';
+import { DeleteFilled } from '@ant-design/icons';
+import { primaryTextColor, dangerColor } from '../../constants/globalColors';
 
 const Container = styled.div`
-  padding: 10px;
-  padding-bottom: 0px;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: flex-start;
   align-items: stretch;
-  flex-direction: column;
+  background-color: #ffffff;
   border-radius: 5px;
   box-shadow: 0px 25px 57px -37px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-bottom: 0px;
+  padding: 10px;
+  position: relative;
+`;
+
+const DeleteButton = styled.button`
+  background-color: ${dangerColor};
+  border-bottom-left-radius: 5px;
+  border: none;
+  color: #ffffff;
   cursor: pointer;
+  height: 40px;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition-duration: 200ms;
+  width: 40px;
+  z-index: 1;
+  ${Container}:hover & {
+    opacity: 1;
+  }
 `;
 
 const ColorsBorder = styled.div`
-  height: 80%;
-  width: 100%;
   border-radius: 5px;
+  cursor: pointer;
+  height: 80%;
   overflow: hidden;
+  width: 100%;
 `;
 
 const ColorsContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: 1fr;
-  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
   height: 100%;
   transition-duration: 200ms;
-  ${Container}:hover & {
+  width: 100%;
+  ${ColorsBorder}:hover & {
     transform: scale(1.1);
   }
 `;
 
 const InfoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  display: flex;
   height: 20%;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 const Info = styled.p`
-  font-size: ${(props) => (props.emoji ? '1.5rem' : '1rem')};
   color: ${primaryTextColor};
+  font-size: ${(props) => (props.emoji ? '1.5rem' : '1rem')};
   margin: 0;
 `;
 
-function MiniPalette({ name, emoji, colors, id }) {
+function MiniPalette({ name, emoji, colors, id, deletePalette }) {
   const history = useHistory();
   return (
-    <Container onClick={() => history.push(`/palette/${id}`)}>
-      <ColorsBorder>
+    <Container>
+      <DeleteButton onClick={deletePalette}>
+        <DeleteFilled />
+      </DeleteButton>
+      <ColorsBorder onClick={() => history.push(`/palette/${id}`)}>
         <ColorsContainer>
           {colors.map(({ color }) => {
             return <div style={{ backgroundColor: color }} key={color} />;
@@ -79,6 +104,7 @@ MiniPalette.propTypes = {
     }),
   ).isRequired,
   id: PropTypes.string.isRequired,
+  deletePalette: PropTypes.func.isRequired,
 };
 
 export default MiniPalette;

@@ -179,7 +179,7 @@ function Drawer({ unfolded, setPaletteColors, paletteColors }) {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block disabled={paletteColors.length === 20}>
-              Submit
+              {paletteColors.length === 20 ? 'Max 20 colors in palette' : 'Submit'}
             </Button>
           </Form.Item>
         </ColorForm>

@@ -65,6 +65,7 @@ function CreatePalette() {
             setDrawerUnfolded={() => setDrawerUnfolded(!drawerUnfolded)}
             startSavingProgress={() => setSavingProgress(true)}
             drawerUnfolded={drawerUnfolded}
+            paletteColors={newPalette.colors}
           />
           <Palette
             paletteColors={newPalette.colors}

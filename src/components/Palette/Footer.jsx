@@ -13,8 +13,8 @@ const Container = styled.div`
 
 const PaletteName = styled.h3`
   color: ${primaryTextColor};
-  margin: 0;
   font-size: 1.5rem;
+  margin: 0;
 `;
 
 function Footer({ name, emoji }) {

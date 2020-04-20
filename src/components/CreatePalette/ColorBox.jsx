@@ -10,9 +10,9 @@ const Container = styled.div.attrs((props) => ({
     backgroundColor: props.backgroundColor,
   },
 }))`
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   padding: 10px;
   & > span {
     color: ${(props) =>
@@ -31,13 +31,13 @@ const Container = styled.div.attrs((props) => ({
 `;
 
 const DeleteButton = styled.button`
-  font-size: 1rem;
-  color: ${primaryTextColor};
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
+  color: ${primaryTextColor};
   cursor: pointer;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
   transition-duration: 150ms;
   ${Container}:hover & {
     color: #ffffff;

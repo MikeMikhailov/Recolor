@@ -10,10 +10,10 @@ import defaultPalettes from '../constants/seedColors';
 import { addPalette } from '../store/actions/palettes.actions';
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
+  height: 100vh;
   justify-content: flex-start;
+  width: 100vw;
 `;
 
 const PaletteContainer = styled.div`
@@ -34,14 +34,14 @@ function CreatePalette() {
   const [savingProgress, setSavingProgress] = useState(false);
   const paletteNames = useSelector((state) => state.palettes).map((palette) => palette.name);
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
 
   const createPalette = () => {
     const newPaletteId = newPalette.name.toLowerCase().replace(/\s/, '-');
-    setNewPalette({...newPalette, id: newPaletteId});
+    setNewPalette({ ...newPalette, id: newPaletteId });
     dispatch(addPalette(newPalette));
     history.push('/');
-  }
+  };
 
   return (
     <>

@@ -6,24 +6,24 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { halfTransparent } from '../../constants/globalColors';
 
 const Container = styled.div`
+  align-items: center;
   background-color: #000000;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const GoBackButton = styled.button`
   background-color: transparent;
-  border: 2px solid ${halfTransparent};
   border-radius: 5px;
+  border: 2px solid ${halfTransparent};
   color: #ffffff;
   cursor: pointer;
   display: flex;
   font-size: 1rem;
-  padding: 10px 30px;
   font-weight: bold;
-  transition-duration: 200ms;
+  padding: 10px 30px;
   text-transform: uppercase;
+  transition-duration: 200ms;
   ${Container}:hover & {
     border-color: #ffffff;
   }

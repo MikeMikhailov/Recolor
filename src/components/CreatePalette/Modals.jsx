@@ -6,28 +6,26 @@ import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
-  position: absolute;
-  z-index: 2;
+  align-items: center;
   background-color: hsla(0, 0%, 0%, 0.5);
   display: flex;
-  align-items: center;
+  height: 100vh;
   justify-content: center;
+  position: absolute;
+  width: 100vw;
+  z-index: 2;
 `;
 
 function Modals({ paletteNames, newPalette, setNewPalette, cancelSavingProgress, createPalette }) {
   const [namingError, setNamingError] = useState(null);
 
   const handleNaming = (name) => {
-    if (
-      paletteNames.find((paletteName) => paletteName.toLowerCase() === name.toLowerCase())
-    ) {
+    if (paletteNames.find((paletteName) => paletteName.toLowerCase() === name.toLowerCase())) {
       setNamingError('The palette name should be unique!');
     } else {
       setNamingError(null);
     }
-    setNewPalette({...newPalette, name, id: name.toLowerCase().replace(/\s/, '-') })
+    setNewPalette({ ...newPalette, name, id: name.toLowerCase().replace(/\s/, '-') });
   };
 
   const closeModal = (e) => {

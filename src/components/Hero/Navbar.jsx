@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import { halfTransparent } from '../../constants/globalColors';
 
 const Container = styled.div`
-  width: 60%;
-  min-width: 325px;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  min-width: 325px;
+  width: 60%;
 `;
 
 const Logo = styled(Link)`
-  font-size: 2rem;
   color: white;
+  font-size: 2rem;
   font-weight: bold;
   &:hover {
     color: white;
@@ -22,10 +22,10 @@ const Logo = styled(Link)`
 `;
 
 const CreatePaletteLink = styled(Link)`
-  font-size: 1.25rem;
-  color: white;
-  font-weight: 500;
   color: ${halfTransparent};
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
   &:hover {
     color: #ffffff;
   }

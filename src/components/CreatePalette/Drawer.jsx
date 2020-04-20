@@ -26,17 +26,16 @@ const foldDrawer = keyframes`
 const Container = styled.div`
   animation: ${(props) => (props.unfolded ? unfoldDrawer : foldDrawer)} 200ms ease-in-out 0s 1
     normal forwards;
-  width: 20vw;
+  align-items: center;
   box-shadow: 15px 0px 35px -5px rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  min-width: 300px;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
   justify-content: center;
-  align-items: center;
+  min-width: 300px;
   padding: 20px;
-  transition-duration: 200ms;
+  width: 20vw;
+  z-index: 1;
   & > *:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -50,9 +49,9 @@ const Heading = styled.h3`
 `;
 
 const ActionsContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  width: 100%;
 `;
 
 const ColorForm = styled(Form)`
@@ -60,10 +59,10 @@ const ColorForm = styled(Form)`
 `;
 
 const ColorPicker = styled(ChromePicker)`
-  width: 100% !important;
-  box-shadow: none !important;
   border: 1px solid #e2e2e2;
-  transition: all 300ms;
+  box-shadow: none !important;
+  transition-duration: 300ms;
+  width: 100% !important;
   &:hover {
     border-color: #40a9ff;
   }

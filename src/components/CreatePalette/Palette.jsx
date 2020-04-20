@@ -15,24 +15,24 @@ const ColorBoxesGrid = styled.div`
 `;
 
 const EmptyPaletteContainer = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 95vh;
+  justify-content: center;
 `;
 
 const EmptyPaletteHeading = styled.h1`
-  font-size: 10rem;
   color: ${secondaryTextColor};
+  font-size: 10rem;
   margin-top: 0px;
 `;
 
 const EmptyPaletteSubheading = styled.h1`
-  font-size: 2rem;
   color: ${secondaryTextColor};
-  margin-top: 0px;
+  font-size: 2rem;
   margin-bottom: 0px;
+  margin-top: 0px;
 `;
 
 const SortableColorBox = SortableElement(({ name, backgroundColor, deleteColor }) => (
@@ -81,11 +81,7 @@ function Palette({ paletteColors, setPaletteColors }) {
       </EmptyPaletteContainer>
     );
 
-  return (
-    <>
-      {PaletteContent}
-    </>
-  );
+  return <>{PaletteContent}</>;
 }
 
 Palette.propTypes = {

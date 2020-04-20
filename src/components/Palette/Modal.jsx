@@ -37,6 +37,7 @@ const ModalBackground = styled.div`
 
 const ModalMessage = styled.div`
   align-items: center;
+  animation: ${showModalMessage} 200ms ease-in-out 100ms 1 normal forwards;
   bottom: 0;
   display: flex;
   flex-direction: column;
@@ -47,7 +48,6 @@ const ModalMessage = styled.div`
   right: 0;
   top: 0;
   z-index: 2;
-  animation: ${showModalMessage} 200ms ease-in-out 100ms 1 normal forwards;
   & h1 {
     background-color: ${halfTransparent};
     color: #ffffff;

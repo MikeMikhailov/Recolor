@@ -26,16 +26,16 @@ const CopyArea = styled.div`
 
 const CopyButton = styled.button`
   background-color: transparent;
-  border: 2px solid ${halfTransparent};
   border-radius: 5px;
+  border: 2px solid ${halfTransparent};
   color: #ffffff;
   cursor: pointer;
   font-size: 1rem;
   font-weight: bold;
   opacity: 0;
   padding: 10px 30px;
-  transition-duration: 200ms;
   text-transform: uppercase;
+  transition-duration: 200ms;
   &:focus {
     outline: none;
   }
@@ -61,8 +61,8 @@ const ContentContainer = styled.div`
         ? '#ffffff'
         : primaryTextColor};
     font-size: 1rem;
-    text-transform: uppercase;
     line-height: 1.5rem;
+    text-transform: uppercase;
   }
 `;
 

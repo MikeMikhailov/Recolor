@@ -26,7 +26,9 @@ function Navbar({ setDrawerUnfolded, drawerUnfolded, startSavingProgress }) {
       </Navigation>
       <Navigation>
         <Button onClick={() => history.push('/')}>Go Back</Button>
-        <Button onClick={startSavingProgress} type="primary">Save Palette</Button>
+        <Button onClick={startSavingProgress} type="primary">
+          Save Palette
+        </Button>
       </Navigation>
     </Header>
   );

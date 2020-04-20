@@ -21,11 +21,11 @@ const openNotification = (placement) => {
 
 const LogoLink = styled.div`
   color: ${primaryTextColor};
+  cursor: pointer;
   display: flex;
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1.5rem;
-  cursor: pointer;
 `;
 
 const BackIcon = styled(ArrowLeftOutlined)`

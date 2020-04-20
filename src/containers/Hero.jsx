@@ -6,24 +6,24 @@ import MiniPalette from '../components/Hero/MiniPalette.jsx';
 import deletePalette from '../store/actions/palettes.actions';
 
 const Container = styled.div`
-  width: 100vw;
-  min-height: 100vh;
+  align-items: center;
   background-color: #3c40c6;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   flex-direction: column;
+  justify-content: flex-start;
+  min-height: 100vh;
   padding-bottom: 50px;
+  width: 100vw;
 `;
 
 const PalettesContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
-  grid-auto-rows: 200px;
   column-gap: 50px;
+  display: grid;
+  grid-auto-rows: 200px;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  min-width: 325px;
   row-gap: 35px;
   width: 60%;
-  min-width: 325px;
 `;
 
 function Hero() {

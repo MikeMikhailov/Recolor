@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -33,22 +33,39 @@ const BackIcon = styled(ArrowLeftOutlined)`
 `;
 
 const LightnessSlider = styled(Slider)`
-  width: 80vw;
+  width: 50vw;
   @media (min-width: 1200px) {
     width: 30vw;
   }
-  @media (min-width: 768px) {
-    width: 50vw;
-  }
-`;
-
-const ColorCodingSelector = styled(Select)`
-  min-width: 250px;
 `;
 
 function Navbar({ lightness, setLightness, setColorCoding, singleColor }) {
   const history = useHistory();
   const { paletteId, colorId } = useParams();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
+    return () => window.removeEventListener('resize', () => setWindowWidth(window.innerWidth));
+  }, []);
+  const lightnessController =
+    windowWidth > 750 ? (
+      <LightnessSlider
+        min={colorLightnessValues[0]}
+        max={colorLightnessValues[colorLightnessValues.length - 1]}
+        marks={marks}
+        step={null}
+        defaultValue={lightness}
+        tipFormatter={null}
+        onChange={setLightness}
+        dropdownMatchSelectWidth={false}
+      />
+    ) : (
+      <Select defaultValue={500} onChange={setLightness}>
+        {colorLightnessValues.map((value) => (
+          <Option value={value} key={value}>{value}</Option>
+        ))}
+      </Select>
+    );
   const backPath = colorId !== undefined ? `/palette/${paletteId}` : '/';
   return (
     <Header>
@@ -57,31 +74,20 @@ function Navbar({ lightness, setLightness, setColorCoding, singleColor }) {
           <BackIcon />
           Recolor
         </LogoLink>
-        {!singleColor ? (
-          <LightnessSlider
-            min={colorLightnessValues[0]}
-            max={colorLightnessValues[colorLightnessValues.length - 1]}
-            marks={marks}
-            step={null}
-            defaultValue={lightness}
-            tipFormatter={null}
-            onChange={setLightness}
-            dropdownMatchSelectWidth={false}
-          />
-        ) : null}
       </Navigation>
+      <Navigation>{!singleColor ? lightnessController : null}</Navigation>
       <Navigation>
-        <ColorCodingSelector
+        <Select
           defaultValue="hex"
           onChange={(value) => {
             setColorCoding(value);
             openNotification('bottomLeft');
           }}
         >
-          <Option value="hex">HEX — #ffffff</Option>
-          <Option value="rgb">RGB — rgb(255,255,255)</Option>
-          <Option value="rgba">RGBA — rgba(255,255,255,1)</Option>
-        </ColorCodingSelector>
+          <Option value="hex">HEX</Option>
+          <Option value="rgb">RGB</Option>
+          <Option value="rgba">RGBA</Option>
+        </Select>
       </Navigation>
     </Header>
   );

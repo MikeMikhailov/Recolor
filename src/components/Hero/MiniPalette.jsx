@@ -14,8 +14,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   overflow: hidden;
-  padding-bottom: 0px;
   padding: 10px;
+  padding-bottom: 0px;
   position: relative;
 `;
 

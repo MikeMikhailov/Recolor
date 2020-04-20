@@ -13,17 +13,16 @@ const Container = styled.div`
 `;
 
 const Logo = styled(Link)`
-  color: white;
+  color: #ffffff;
   font-size: 2rem;
   font-weight: bold;
   &:hover {
-    color: white;
+    color: #ffffff;
   }
 `;
 
 const CreatePaletteLink = styled(Link)`
   color: ${halfTransparent};
-  color: white;
   font-size: 1.25rem;
   font-weight: 500;
   &:hover {

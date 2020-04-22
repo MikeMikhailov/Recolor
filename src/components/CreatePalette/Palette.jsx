@@ -27,7 +27,7 @@ const EmptyPaletteContainer = styled.div`
 
 const EmptyPaletteHeading = styled.h1`
   color: ${secondaryTextColor};
-  font-size: 10rem;
+  font-size: 5rem;
   margin-top: 0px;
 `;
 

@@ -17,9 +17,9 @@ const Container = styled.div`
   padding: 10px;
   padding-bottom: 0px;
   -webkit-backface-visibility: hidden;
- -moz-backface-visibility: hidden;
- -webkit-transform: translate3d(0, 0, 0);
- -moz-transform: translate3d(0, 0, 0);
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 `;
 
 const DeleteButton = styled.button`
@@ -48,9 +48,9 @@ const ColorsBorder = styled.div`
   overflow: hidden;
   width: 100%;
   -webkit-backface-visibility: hidden;
- -moz-backface-visibility: hidden;
- -webkit-transform: translate3d(0, 0, 0);
- -moz-transform: translate3d(0, 0, 0);
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
 `;
 
 const ColorsContainer = styled.div`

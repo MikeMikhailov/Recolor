@@ -1,30 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import { Button, Tooltip } from 'antd';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
-import useWindowWidth from '../../hooks/useWindowWidth.jsx';
-import { primaryTextColor } from '../../constants/globalColors';
-
-const Heading = styled.h3`
-  color: ${primaryTextColor};
-  font-size: 1.5rem;
-  line-height: 1.5rem;
-  margin: 0px;
-`;
 
 function Navbar({ setDrawerUnfolded, drawerUnfolded, startSavingProgress, paletteColors }) {
   const history = useHistory();
-  const windowWidth = useWindowWidth();
   return (
     <Header>
       <Navigation>
         <Button onClick={setDrawerUnfolded}>
           {drawerUnfolded ? <MenuFoldOutlined /> : <MenuUnfoldOutlined />}
         </Button>
-        {windowWidth > 1000 ? <Heading>Create new palette!</Heading> : null}
       </Navigation>
       <Navigation>
         <Button onClick={() => history.push('/')}>Go Back</Button>

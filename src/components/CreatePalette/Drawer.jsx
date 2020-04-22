@@ -3,19 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ChromePicker } from 'react-color';
 import { Button, Input, Form, Drawer as Container } from 'antd';
-import { primaryTextColor, primaryColor } from '../../constants/globalColors';
+import { primaryColor } from '../../constants/globalColors';
 
 const StyledContainer = styled(Container)`
   & .ant-drawer-body > *:not(:last-child) {
     margin-bottom: 20px;
   }
-`;
-
-const Heading = styled.h3`
-  color: ${primaryTextColor};
-  font-size: 2rem;
-  line-height: 2rem;
-  text-align: center;
 `;
 
 const ActionsContainer = styled.div`
@@ -42,7 +35,6 @@ const ColorPicker = styled(ChromePicker)`
   }
 `;
 function Drawer({ unfolded, closeDrawer, setPaletteColors, paletteColors }) {
-
   const [color, setColor] = useState('#ffffff');
   const [name, setName] = useState('');
 
@@ -85,14 +77,19 @@ function Drawer({ unfolded, closeDrawer, setPaletteColors, paletteColors }) {
 
   return (
     <StyledContainer
-      title="Basic Drawer"
+      title="Design your palette"
       placement="left"
       closable
       onClose={closeDrawer}
       visible={unfolded}
       width="325px"
+      bodyStyle={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
     >
-      <Heading>Design your palette</Heading>
       <ActionsContainer>
         <Button danger onClick={handlePaletteReset}>
           Clear Palette

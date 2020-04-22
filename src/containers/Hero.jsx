@@ -4,10 +4,14 @@ import styled from 'styled-components';
 import Navbar from '../components/Hero/Navbar.jsx';
 import MiniPalette from '../components/Hero/MiniPalette.jsx';
 import { deletePalette } from '../store/actions/palettes.actions';
+import backgroundImage from '../constants/background.svg';
 
 const Container = styled.div`
   align-items: center;
   background-color: #3c40c6;
+  background-image: url(${backgroundImage});
+  background-attachment: fixed;
+  /* background by SVGBackgrounds.com */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

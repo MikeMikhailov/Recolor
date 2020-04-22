@@ -42,7 +42,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif|woff2?)$/,
+        test: /\.(png|jpg|gif|svg|woff2?)$/,
         use: [
           {
             loader: require.resolve('file-loader'),

@@ -6,10 +6,8 @@ import Drawer from '../components/CreatePalette/Drawer.jsx';
 import Navbar from '../components/CreatePalette/Navbar.jsx';
 import Palette from '../components/CreatePalette/Palette.jsx';
 import Modals from '../components/CreatePalette/Modals.jsx';
-import useWindowWidth from '../hooks/useWindowWidth.jsx';
 import defaultPalettes from '../constants/seedColors';
 import { addPalette } from '../store/actions/palettes.actions';
-import TooSmallMessage from '../components/CreatePalette/TooSmallMessage.jsx';
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +24,7 @@ const PaletteContainer = styled.div`
 `;
 
 function CreatePalette() {
-  const [drawerUnfolded, setDrawerUnfolded] = useState(true);
+  const [drawerUnfolded, setDrawerUnfolded] = useState(false);
   const [newPalette, setNewPalette] = useState({
     name: '',
     id: '',
@@ -38,12 +36,6 @@ function CreatePalette() {
   const paletteNames = useSelector((state) => state.palettes).map((palette) => palette.name);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const windowWidth = useWindowWidth();
-
-  if (windowWidth < 700) {
-    return <TooSmallMessage />;
-  }
 
   const createPalette = () => {
     const newPaletteId = newPalette.name.toLowerCase().replace(/\s/, '-');
@@ -66,6 +58,7 @@ function CreatePalette() {
       <Container>
         <Drawer
           unfolded={drawerUnfolded}
+          closeDrawer={() => setDrawerUnfolded(false)}
           setPaletteColors={(colors) => setNewPalette({ ...newPalette, colors })}
           paletteColors={newPalette.colors}
         />

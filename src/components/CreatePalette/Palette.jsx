@@ -7,8 +7,11 @@ import { secondaryTextColor } from '../../constants/globalColors';
 
 const ColorBoxesGrid = styled.div`
   display: grid;
-  grid-auto-rows: 23.75vh;
+  grid-auto-rows: 11.875vh;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  @media (min-width: 500px) {
+    grid-auto-rows: 23.75vh;
+  }
   @media (min-width: 1500px) {
     grid-template-columns: repeat(5, 1fr);
   }

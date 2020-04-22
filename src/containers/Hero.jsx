@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { TransitionGroup } from 'react-transition-group';
+import transition from 'styled-transition-group';
 import Navbar from '../components/Hero/Navbar.jsx';
 import MiniPalette from '../components/Hero/MiniPalette.jsx';
 import { deletePalette } from '../store/actions/palettes.actions';
@@ -20,7 +22,7 @@ const Container = styled.div`
   width: 100vw;
 `;
 
-const PalettesContainer = styled.div`
+const PalettesContainer = styled(TransitionGroup)`
   column-gap: 50px;
   display: grid;
   grid-auto-rows: 200px;
@@ -28,6 +30,19 @@ const PalettesContainer = styled.div`
   min-width: 325px;
   row-gap: 35px;
   width: 60%;
+`;
+
+const Fade = transition.div.attrs({
+  unmountOnExit: true,
+  timeout: 500,
+})`
+&:exit {
+  opacity: 1;
+}
+&:exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
 `;
 
 function Hero() {
@@ -38,14 +53,15 @@ function Hero() {
       <Navbar />
       <PalettesContainer>
         {palettes.map(({ id, name, colors, emoji }) => (
-          <MiniPalette
-            name={name}
-            emoji={emoji}
-            colors={colors}
-            id={id}
-            key={id}
-            deletePalette={() => dispatch(deletePalette(id))}
-          />
+          <Fade key={id}>
+            <MiniPalette
+              name={name}
+              emoji={emoji}
+              colors={colors}
+              id={id}
+              deletePalette={() => dispatch(deletePalette(id))}
+            />
+          </Fade>
         ))}
       </PalettesContainer>
     </Container>

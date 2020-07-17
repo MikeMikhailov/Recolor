@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { Slider, Select, notification } from 'antd';
+import { Slider, Select, notification } from 'antd.macro';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
-import useWindowWidth from '../../hooks/useWindowWidth.jsx';
+import useWindowWidth from '../../hooks/useWindowWidth';
 import { colorLightnessValues } from '../../services/paletteGenerator';
 import { primaryTextColor } from '../../constants/globalColors';
 

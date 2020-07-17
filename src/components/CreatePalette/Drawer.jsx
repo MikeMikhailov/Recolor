@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ChromePicker } from 'react-color';
-import { Button, Input, Form, Drawer as Container } from 'antd';
+import { Button, Input, Form, Drawer as Container } from 'antd.macro';
 import { primaryColor } from '../../constants/globalColors';
 
 const StyledContainer = styled(Container)`

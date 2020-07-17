@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import ColorBox from './ColorBox.jsx';
-import GoBackBox from './GoBackBox.jsx';
+import ColorBox from './ColorBox';
+import GoBackBox from './GoBackBox';
 
 const Wrap = styled.div`
   min-height: 90vh;

@@ -1,22 +1,15 @@
 const path = require('path');
-
-const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
-    plugins: [PnpWebpackPlugin],
   },
   mode: 'production',
-  resolveLoader: {
-    plugins: [PnpWebpackPlugin.moduleLoader(module)],
-  },
   entry: './src/index.jsx',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -25,27 +18,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: require.resolve('babel-loader'),
+          loader: 'babel-loader',
         },
       },
       {
-        test: /\.s?[ac]ss$/,
+        test: /\.css$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: { esModule: true },
-          },
-          { loader: require.resolve('css-loader'), options: { esModule: true } },
+          { loader: MiniCssExtractPlugin.loader, options: { esModule: true } },
+          { loader: 'css-loader', options: { esModule: true } },
         ],
       },
       {
         test: /\.(png|jpg|gif|svg|woff2?)$/,
         use: [
           {
-            loader: require.resolve('file-loader'),
+            loader: 'file-loader',
           },
         ],
       },
@@ -56,10 +46,19 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
+          parse: {
+            ecma: 2017,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            inline: 2,
+          },
           mangle: {
             safari10: true,
           },
           output: {
+            ecma: 5,
             ascii_only: true,
             comments: false,
           },
@@ -67,7 +66,14 @@ module.exports = {
         parallel: true,
         cache: true,
       }),
-      new OptimizeCSSAssetsPlugin(),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          map: {
+            inline: false,
+            annotation: true
+          }
+        }
+      })
     ],
   },
   plugins: [
@@ -77,7 +83,6 @@ module.exports = {
       template: './public/index.html', // source html
     }),
     new MiniCssExtractPlugin(),
-    // new FaviconsWebpackPlugin('./public/logo.svg'),
-    new BundleAnalyzerPlugin()
+    new FaviconsWebpackPlugin('./public/logo.svg'),
   ],
 };

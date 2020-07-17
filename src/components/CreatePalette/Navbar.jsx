@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { Button, Tooltip } from 'antd';
+import { Button, Tooltip } from 'antd.macro';
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Header, Navigation } from '../General/Navbar';
 

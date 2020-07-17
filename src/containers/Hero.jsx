@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TransitionGroup } from 'react-transition-group';
 import transition from 'styled-transition-group';
-import Navbar from '../components/Hero/Navbar.jsx';
-import MiniPalette from '../components/Hero/MiniPalette.jsx';
+import Navbar from '../components/Hero/Navbar';
+import MiniPalette from '../components/Hero/MiniPalette';
 import { deletePalette } from '../store/actions/palettes.actions';
 import backgroundImage from '../constants/background.svg';
 

@@ -1,18 +1,4 @@
 {
-  "plugins": [
-    "@babel/transform-runtime",
-    "macros",
-    [
-      "import",
-      {
-        "libraryDirectory": "es",
-        "libraryName": "antd",
-        "style": "css"
-      }
-    ]
-  ],
-  "presets": [
-    "@babel/react",
-    "@babel/env"
-  ]
+  "presets": ["@babel/react", "@babel/env"],
+  "plugins": ["@babel/transform-runtime", "macros"]
 }

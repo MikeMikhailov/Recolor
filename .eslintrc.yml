@@ -20,10 +20,7 @@ rules:
   import/no-extraneous-dependencies:
     - error
     - devDependencies: true
-  import/no-mutable-exports: 0
   no-underscore-dangle:
     - error
     - allow :
       - __REDUX_DEVTOOLS_EXTENSION__
-settings:
-  import/resolver: node

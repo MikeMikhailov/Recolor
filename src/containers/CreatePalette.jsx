@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import Drawer from '../components/CreatePalette/Drawer.jsx';
-import Navbar from '../components/CreatePalette/Navbar.jsx';
-import Palette from '../components/CreatePalette/Palette.jsx';
-import Modals from '../components/CreatePalette/Modals.jsx';
+import Drawer from '../components/CreatePalette/Drawer';
+import Navbar from '../components/CreatePalette/Navbar';
+import Palette from '../components/CreatePalette/Palette';
+import Modals from '../components/CreatePalette/Modals';
 import defaultPalettes from '../constants/seedColors';
 import { addPalette } from '../store/actions/palettes.actions';
 
